@@ -53,7 +53,7 @@ const PopularProducts = () => {
       {/* Header */}
       <div className="flex items-center justify-between mb-12">
         <div>
-          <h2 className="font-playfair text-5xl text-gray-900 mb-2">
+          <h2 className="font-bold font-playfair text-5xl text-gray-900 mb-2">
             Popular products
           </h2>
           <p className="font-inter text-gray-500 max-w-2xl">
