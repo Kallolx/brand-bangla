@@ -34,7 +34,7 @@ const ProductCard = ({ image, name, rating, discount, priceRange, isHovered }: P
       />
 
       {/* Dark Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t" />
 
       {/* Product Info Card */}
       <motion.div 
@@ -43,7 +43,7 @@ const ProductCard = ({ image, name, rating, discount, priceRange, isHovered }: P
         transition={{ duration: 0.2 }}
       >
         <motion.div 
-          className="backdrop-blur-sm bg-white/20 rounded-md p-6 border border-white/10"
+          className="backdrop-blur-sm bg-white/50 rounded-md p-6 border border-white/40"
           whileHover={{
             backgroundColor: "rgba(0, 0, 0, 0.3)",
             transition: { duration: 0.2 }

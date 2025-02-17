@@ -1,11 +1,4 @@
-import {
-  ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-  Truck,
-  CreditCard,
-  ShieldCheck,
-} from "lucide-react";
+import { ArrowRight, MapPin, Cloud } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Confetti } from "@/components/ui/confetti";
 import { WordRotate } from "@/components/ui/word-rotate";
@@ -17,165 +10,97 @@ const Hero = () => {
   return (
     <div className="relative">
       {/* Hero Section */}
-      <div className="relative min-h-screen flex items-center">
-        {/* White Background Pattern */}
-        <div className="absolute inset-0">
-          <img
-            src="/images/background.jpg"
-            alt="Pattern"
-            className="w-full h-[120vh] object-cover opacity-70"
-          />
+      <div className="relative pt-24 mb-20">
+        {/* Video Section */}
+        <div className="mx-auto px-10 py-[20px]">
+          <div className="relative overflow-hidden rounded-none md:rounded-2xl h-[700px] md:h-[700px]">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover object-center"
+              style={{ objectPosition: "50% 50%" }}
+            >
+              <source src="/videos/hero.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            {/* Dark Overlay */}
+            <div className="absolute inset-0 bg-black/30" />
+            
+            {/* Weather Widget */}
+            <div className="absolute top-6 right-6 flex items-center gap-4 z-10">
+              <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full">
+                <Cloud className="w-5 h-5 text-gray-700" />
+                <span className="font-inter font-medium text-gray-900">19°C / 13°C</span>
+              </div>
+              <div className="bg-white/80 backdrop-blur-sm p-3 rounded-full">
+                <MapPin className="w-5 h-5 text-gray-700" />
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Confetti Effect */}
         <Confetti className="fixed inset-0 w-full h-full pointer-events-none z-50" />
 
-        {/* Tagline Section */}
-        <div className="max-w-[1920px] mx-auto px-4 md:px-6 relative pt-28 md:pt-40 pb-12 md:pb-20 w-full">
-          <div className="text-center space-y-6 max-w-[1400px] mx-auto mb-12 md:mb-20">
-            <div className="inline-block cursor-pointer">
-              <motion.div
-                whileHover={{
-                  scale: 1.02,
-                  boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.15)",
-                }}
-                transition={{ type: "spring", stiffness: 100, damping: 10 }}
-                className="font-inter text-xs md:text-sm font-medium bg-[#F8F2E7] text-black px-2 py-1 rounded-full flex items-center gap-2"
-              >
-                <span className="bg-white px-2 md:px-4 py-1 rounded-full whitespace-nowrap">
-                  What's new?
-                </span>
-                <span className="font-bold whitespace-nowrap">
-                  Check new collections
-                </span>
-                <ArrowRight className="w-4 h-4 font-bold hidden md:block" />
-              </motion.div>
-            </div>
-
-            <div className="text-center max-w-[1200px] mx-auto px-4 md:px-0">
-              <h1 className="font-playfair text-4xl sm:text-5xl md:text-7xl font-semibold text-gray-900 leading-tight tracking-wide flex flex-wrap justify-center items-center gap-x-4">
-                Embrace{" "}
-                <span className="inline-flex items-center">
-                  <WordRotate
-                    words={rotatingWords}
-                    className="text-[#B1894A]"
-                    duration={2500}
-                    motionProps={{
-                      initial: { opacity: 0, y: -50 },
-                      animate: { opacity: 1, y: 0 },
-                      exit: { opacity: 0, y: 50 },
-                      transition: { duration: 0.25, ease: "easeOut" },
-                    }}
-                  />
-                </span>{" "}
-                <span>With Exquisite </span>
-                <span className="text-[#4A5C2F]">Bangladeshi</span>{" "}
-                <span>Craftsmanship</span>
+        {/* Content Section */}
+        <div className="max-w-7xl mx-auto px-6 py-8">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between">
+            {/* Title Section - Left Side */}
+            <div className="flex-1 max-w-4xl">
+              <h1 className="font-playfair text-xl sm:text-3xl md:text-5xl font-semibold text-gray-900 leading-[1.2] tracking-wide">
+                <div className="flex items-baseline gap-x-3 mb-2">
+                  <span>Embrace</span>
+                  <span className="text-[#B1894A]">
+                    <WordRotate
+                      words={rotatingWords}
+                      duration={2500}
+                      motionProps={{
+                        initial: { opacity: 0, y: -50 },
+                        animate: { opacity: 1, y: 0 },
+                        exit: { opacity: 0, y: 50 },
+                        transition: { duration: 0.25, ease: "easeOut" },
+                      }}
+                    />
+                  </span>
+                  <span>With Exquisite</span>
+                </div>
+                <div className="flex items-baseline">
+                  <span className="text-[#4A5C2F]">Bangladeshi</span>
+                  <span className="ml-3">Craftsmanship</span>
+                </div>
               </h1>
             </div>
 
-            <p className="text-base md:text-lg text-gray-500 max-w-2xl mx-auto font-inter px-4 md:px-0">
-              Discover handcrafted Bangladeshi treasures, from Jamdani sarees to
-              artisanal products, each reflecting the rich heritage and artistry
-              of Bangladesh.
-            </p>
+            {/* Buttons Section - Right Side */}
+            <div className="flex flex-row items-center gap-4 mt-8 lg:mt-0 lg:ml-8">
+              {/* Reels Button */}
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 200, damping: 10 }}
+              >
+                <Button
+                  variant="outline"
+                  className="font-inter font-bold h-12 px-6 bg-white border-gray-400 hover:bg-gray-200 text-gray-700 transition-colors flex items-center justify-center whitespace-nowrap"
+                >
+                  
+                  About
+                </Button>
+              </motion.div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 pt-4 px-4 md:px-0">
-      {/* Reels Button */}
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        transition={{ type: "spring", stiffness: 200, damping: 10 }}
-      >
-        <Button
-          variant="outline"
-          className="w-full sm:w-auto font-inter font-bold h-12 px-6 bg-white border-gray-400 hover:bg-gray-200 text-gray-700 transition-colors flex items-center"
-        >
-          <img src="/icons/play.svg" alt="play icon" className="w-5 h-5 mr-2" />
-          Reels
-        </Button>
-      </motion.div>
-
-      {/* Browse Product Button */}
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        transition={{ type: "spring", stiffness: 200, damping: 10 }}
-      >
-        <Button className="w-full sm:w-auto font-inter h-12 px-6 bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white flex items-center">
-          Browse Product
-          <ArrowRight className="ml-2 w-4 h-4" />
-        </Button>
-      </motion.div>
-    </div>
-          </div>
-
-          {/* Hero Image Slider */}
-          <div className="relative max-w-5xl mx-auto px-4 md:px-0">
-            <div className="aspect-[4/3] md:aspect-[16/9] rounded-lg overflow-hidden shadow-2xl">
-              <img
-                src="/images/hero/1.jpg"
-                alt="Hero"
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            {/* Navigation Arrows */}
-            <button className="absolute left-6 md:left-4 top-1/2 -translate-y-1/2 w-8 md:w-10 h-8 md:h-10 rounded-full bg-white/60 shadow-lg hover:bg-white flex items-center justify-center text-gray-700 hover:text-gray-900 transition-all">
-              <ChevronLeft className="w-5 md:w-6 h-5 md:h-6" />
-            </button>
-            <button className="absolute right-6 md:right-4 top-1/2 -translate-y-1/2 w-8 md:w-10 h-8 md:h-10 rounded-full bg-white/60 shadow-lg hover:bg-white flex items-center justify-center text-gray-700 hover:text-gray-900 transition-all">
-              <ChevronRight className="w-5 md:w-6 h-5 md:h-6" />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Service Cards Section */}
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-          {/* Free Shipping Card */}
-          <div className="bg-white p-6 rounded-lg border border-gray-100 flex items-start space-x-4">
-            <div className="p-3 bg-[#EBFFF6] rounded-lg">
-              <Truck className="w-6 h-6 text-[#0F5F38]" />
-            </div>
-            <div>
-              <h3 className="font-inter text-lg font-medium text-gray-900 mb-1">
-                Free Shipping
-              </h3>
-              <p className="font-inter text-sm text-gray-500">
-                International shipping available for all orders over $99
-              </p>
-            </div>
-          </div>
-
-          {/* Buy Now Pay Later Card */}
-          <div className="bg-white p-6 rounded-lg border border-gray-100 flex items-start space-x-4">
-            <div className="p-3 bg-[#EBFFF6] rounded-lg">
-              <CreditCard className="w-6 h-6 text-[#0F5F38]" />
-            </div>
-            <div>
-              <h3 className="font-inter text-lg font-medium text-gray-900 mb-1">
-                Buy Now. Pay Later
-              </h3>
-              <p className="font-inter text-sm text-gray-500">
-                0% Interest financing available Pay after 30 days
-              </p>
-            </div>
-          </div>
-
-          {/* Secure Payments Card */}
-          <div className="bg-white p-6 rounded-lg border border-gray-100 flex items-start space-x-4">
-            <div className="p-3 bg-[#EBFFF6] rounded-lg">
-              <ShieldCheck className="w-6 h-6 text-[#0F5F38]" />
-            </div>
-            <div>
-              <h3 className="font-inter text-lg font-medium text-gray-900 mb-1">
-                Secure Payments
-              </h3>
-              <p className="font-inter text-sm text-gray-500">
-                Guarantee 100% secure payments online on our website
-              </p>
+              {/* Browse Product Button */}
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 200, damping: 10 }}
+              >
+                <Button className="font-inter h-12 px-6 bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white flex items-center justify-center whitespace-nowrap">
+                  Explore Heritage
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </motion.div>
             </div>
           </div>
         </div>

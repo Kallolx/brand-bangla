@@ -443,14 +443,6 @@ const Navbar = () => {
                   <Search className="w-4 h-4 mr-2" />
                   Search
                 </Button>
-                <Button
-                  variant="ghost"
-                  className="w-full justify-start"
-                  size="sm"
-                >
-                  <User className="w-4 h-4 mr-2" />
-                  Account
-                </Button>
               </div>
               <Button className="w-full bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white">
                 Log in / Sign up

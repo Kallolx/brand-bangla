@@ -9,36 +9,22 @@ const ProductFocus = () => {
         {/* Left Section - Content */}
         <div className="space-y-8">
           <h1 className="font-bold font-playfair text-4xl lg:text-5xl text-gray-900">
-            Handwoven Jamdani <br /> Saree in Vibrant Green and Terracotta
+          Brand Bangladesh is the perfect place to sell authentic products.
           </h1>
 
           <p className="font-inter text-gray-600 text-lg leading-relaxed">
-            Handwoven Jamdani saree with a vibrant green <br /> and terracotta
-            contrast, showcasing Bangladeshi <br /> craftsmanship—perfect for
-            special occasions.
+          Brand Bangladesh brings you authentic products that celebrate the craftsmanship and heritage of Bangladesh, from handcrafted to traditional art.
           </p>
 
           <div className="flex flex-wrap gap-4">
-            {/* Add to Cart Button */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 200, damping: 12 }}
-            >
-              <Button className="bg-white hover:bg-gray-100 text-black font-inter font-medium px-8 py-6 border border-gray-200 flex items-center">
-                <ShoppingCart className="w-5 h-5 mr-2" />
-                Add to Cart
-              </Button>
-            </motion.div>
-
-            {/* Buy Now Button */}
+           {/* Buy Now Button */}
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 200, damping: 12 }}
             >
               <Button className="bg-[#0F5F38] hover:bg-[#0D4F30] text-white rounded-lg font-inter font-medium px-8 py-6 border border-gray-200">
-                Buy Now
+                Open Your Shop
               </Button>
             </motion.div>
           </div>
