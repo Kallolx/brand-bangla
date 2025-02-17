@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const BrandShowcase = () => {
   return (
-    <section className="relative pt-40 pb-40">
+    <section className="relative pt-16 sm:pt-24 md:pt-32 lg:pt-40 pb-16 sm:pb-24 md:pb-32 lg:pb-40">
       {/* Background Image */}
       <div 
         className="absolute inset-0 w-full h-full"
@@ -15,7 +15,7 @@ const BrandShowcase = () => {
       />
 
       {/* Content Container */}
-      <div className="max-w-7xl mx-auto px-6 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
         {/* Map Container */}
         <motion.div 
           className="flex justify-center items-center"
@@ -29,7 +29,7 @@ const BrandShowcase = () => {
             <img
               src="/images/map.svg"
               alt="Bangladesh Map"
-              className="w-[600px] h-auto"
+              className="w-full max-w-[300px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] h-auto"
             />
           </div>
         </motion.div>

@@ -73,26 +73,26 @@ const RegionalCrafts = () => {
   ];
 
   return (
-    <section className="py-20 bg-[#f3f3f3]">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-12 sm:py-16 md:py-20 bg-[#f3f3f3]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="mb-12">
-          <h2 className="font-bold font-playfair text-4xl text-gray-900 mb-4">
+        <div className="mb-8 sm:mb-10 md:mb-12">
+          <h2 className="font-bold font-playfair text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-3 sm:mb-4">
             Explore Authentic Crafts by Region
           </h2>
-          <p className="font-inter text-gray-500 max-w-2xl">
+          <p className="font-inter text-gray-500 text-sm sm:text-base max-w-2xl">
             Explore our traditional Bangladeshi products, from Jamdani sarees to handcrafted accessories. Choose your favorite today!
           </p>
         </div>
 
         {/* Region Tabs */}
-        <div className="flex items-center justify-between mb-12">
-          <div className="font-inter flex items-center gap-8 overflow-x-auto pb-4 scrollbar-hide">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6 mb-8 sm:mb-10 md:mb-12">
+          <div className="font-inter flex items-center gap-4 sm:gap-6 md:gap-8 overflow-x-auto pb-2 sm:pb-4 scrollbar-hide">
             {regions.map((region) => (
               <button
                 key={region}
                 onClick={() => setActiveRegion(region)}
-                className={`relative pb-2 font-inter font-medium transition-colors ${
+                className={`relative pb-1 sm:pb-2 font-inter font-medium text-sm sm:text-base whitespace-nowrap transition-colors ${
                   activeRegion === region
                     ? "text-[#0F5F38]"
                     : "text-gray-600 hover:text-gray-900"
@@ -105,31 +105,31 @@ const RegionalCrafts = () => {
               </button>
             ))}
           </div>
-          <Button className="font-inter px-6 py-6 bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white">
+          <Button className="font-inter px-4 sm:px-6 py-2.5 sm:py-3 md:py-3.5 bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white text-sm sm:text-base whitespace-nowrap">
             See All
           </Button>
         </div>
 
         {/* Products Grid */}
         <div className="relative">
-          <div className="mb-8">
+          <div className="mb-6 sm:mb-8">
             <Swiper
               onBeforeInit={(swiper) => {
                 swiperRef.current = swiper;
               }}
-              slidesPerView={1}
-              spaceBetween={32}
+              slidesPerView={1.2}
+              spaceBetween={16}
               speed={800}
               breakpoints={{
+                480: {
+                  slidesPerView: 1.5,
+                  spaceBetween: 20,
+                },
                 640: {
                   slidesPerView: 2,
                   spaceBetween: 24,
                 },
                 1024: {
-                  slidesPerView: 3,
-                  spaceBetween: 32,
-                },
-                1280: {
                   slidesPerView: 3,
                   spaceBetween: 32,
                 },
@@ -145,19 +145,19 @@ const RegionalCrafts = () => {
           </div>
 
           {/* Navigation Controls */}
-          <div className="flex items-center justify-end mt-4">
-            <div className="flex items-center gap-4">
+          <div className="flex items-center justify-end mt-2 sm:mt-4">
+            <div className="flex items-center gap-2 sm:gap-4">
               <button 
                 onClick={() => swiperRef.current?.slidePrev()}
-                className="w-10 h-10 rounded-full border border-gray-300 hover:border-gray-400 flex items-center justify-center text-gray-700 hover:text-gray-900 transition-colors"
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-gray-300 hover:border-gray-400 flex items-center justify-center text-gray-700 hover:text-gray-900 transition-colors"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
               <button 
                 onClick={() => swiperRef.current?.slideNext()}
-                className="w-10 h-10 rounded-full border border-gray-300 hover:border-gray-400 flex items-center justify-center text-gray-700 hover:text-gray-900 transition-colors"
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-gray-300 hover:border-gray-400 flex items-center justify-center text-gray-700 hover:text-gray-900 transition-colors"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
           </div>
