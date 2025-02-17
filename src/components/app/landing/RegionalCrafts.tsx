@@ -55,7 +55,7 @@ const RegionalCrafts = () => {
       priceRange: "৳1200 - ৳2000"
     },
     {
-      image: "/images/products/5.jpg",
+      image: "/images/products/2.jpg",
       title: "Jamdani Saree",
       description: "Exquisite handwoven fabric with intricate geometric and floral patterns, a pride of Bengali heritage.",
       rating: 5,
@@ -63,7 +63,7 @@ const RegionalCrafts = () => {
       priceRange: "৳5000 - ৳50000"
     },
     {
-      image: "/images/products/6.jpg",
+      image: "/images/products/1.jpg",
       title: "Bamboo Crafts",
       description: "Beautifully crafted sustainable bamboo products showcasing traditional Bengali craftsmanship.",
       rating: 4,

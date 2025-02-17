@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import {
   ShoppingCart,
   Search,
-  User,
   ChevronDown,
   ShoppingBag,
   Menu,
@@ -12,29 +11,15 @@ import {
   Home,
   Wrench,
   Gift,
+  MapPin
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Shirt, ShirtIcon } from "lucide-react";
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 0);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const toggleSection = (section: string) => {
-    setExpandedSection(expandedSection === section ? null : section);
-  };
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -48,12 +33,20 @@ const Navbar = () => {
     };
   }, [isMobileMenuOpen]);
 
+  // Add smooth scrolling to the entire document
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = "smooth";
+    return () => {
+      document.documentElement.style.scrollBehavior = "auto";
+    };
+  }, []);
+
+  const toggleSection = (section: string) => {
+    setExpandedSection(expandedSection === section ? null : section);
+  };
+
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white shadow-sm" : "bg-transparent"
-      } py-4 md:py-8 px-4 md:px-6 font-inter`}
-    >
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm py-4 md:py-8 px-4 md:px-6 font-inter">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex items-center md:space-x-16">
           <Link to="/" className="flex items-center">
@@ -68,7 +61,7 @@ const Navbar = () => {
             <div className="group relative">
               <button className="group inline-flex items-center space-x-1 text-gray-500 hover:text-[#0F5F38] transition-colors focus:outline-none">
                 <span className="font-bold font-playfair text-base">
-                  Traditional
+                  Products
                 </span>
                 <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
               </button>
@@ -96,26 +89,49 @@ const Navbar = () => {
 
             <div className="group relative">
               <button className="group inline-flex items-center space-x-1 text-gray-500 hover:text-[#0F5F38] transition-colors focus:outline-none">
-                <span className="font-bold font-playfair text-base">Men</span>
+                <span className="font-bold font-playfair text-base">Divisions</span>
                 <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
               </button>
               <div className="absolute left-0 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                 <div className="bg-white rounded-lg shadow-lg border border-gray-100 py-3 w-56">
                   <div className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2">
-                    <Shirt className="w-4 h-4 text-gray-500" />
-                    Shirts
+                    <MapPin className="w-4 h-4 text-gray-500" />
+                    Dhaka
                   </div>
-                  <div className="border-t border-gray-200 mx-4"></div>{" "}
-                  {/* Divider */}
+                  <div className="border-t border-gray-200 mx-4"></div>
                   <div className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2">
-                    <Shirt className="w-4 h-4 text-gray-500" />
-                    Pants
+                    <MapPin className="w-4 h-4 text-gray-500" />
+                    Chittagong
                   </div>
-                  <div className="border-t border-gray-200 mx-4"></div>{" "}
-                  {/* Divider */}
+                  <div className="border-t border-gray-200 mx-4"></div>
                   <div className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2">
-                    <ShoppingBag className="w-4 h-4 text-gray-500" />
-                    Accessories
+                    <MapPin className="w-4 h-4 text-gray-500" />
+                    Khulna
+                  </div>
+                  <div className="border-t border-gray-200 mx-4"></div>
+                  <div className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2">
+                    <MapPin className="w-4 h-4 text-gray-500" />
+                    Rajshahi
+                  </div>
+                  <div className="border-t border-gray-200 mx-4"></div>
+                  <div className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2">
+                    <MapPin className="w-4 h-4 text-gray-500" />
+                    Sylhet
+                  </div>
+                  <div className="border-t border-gray-200 mx-4"></div>
+                  <div className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2">
+                    <MapPin className="w-4 h-4 text-gray-500" />
+                    Barisal
+                  </div>
+                  <div className="border-t border-gray-200 mx-4"></div>
+                  <div className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2">
+                    <MapPin className="w-4 h-4 text-gray-500" />
+                    Rangpur
+                  </div>
+                  <div className="border-t border-gray-200 mx-4"></div>
+                  <div className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2">
+                    <MapPin className="w-4 h-4 text-gray-500" />
+                    Mymensingh
                   </div>
                 </div>
               </div>
@@ -123,29 +139,9 @@ const Navbar = () => {
 
             <div className="group relative">
               <button className="group inline-flex items-center space-x-1 text-gray-500 hover:text-[#0F5F38] transition-colors focus:outline-none">
-                <span className="font-bold font-playfair text-base">Women</span>
-                <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
+                <span className="font-bold font-playfair text-base">Places to go</span>
               </button>
-              <div className="absolute left-0 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                <div className="bg-white rounded-lg shadow-lg border border-gray-100 py-3 w-56">
-                  <div className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2">
-                    <Shirt className="w-4 h-4 text-gray-500" />
-                    Dresses
-                  </div>
-                  <div className="border-t border-gray-200 mx-4"></div>{" "}
-                  {/* Divider */}
-                  <div className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2">
-                    <Shirt className="w-4 h-4 text-gray-500" />
-                    Tops
-                  </div>
-                  <div className="border-t border-gray-200 mx-4"></div>{" "}
-                  {/* Divider */}
-                  <div className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2">
-                    <Gem className="w-4 h-4 text-gray-500" />
-                    Jewelry
-                  </div>
-                </div>
-              </div>
+              
             </div>
 
             <div className="group relative">
@@ -153,28 +149,15 @@ const Navbar = () => {
                 <span className="font-bold  font-playfair text-base">
                   Others
                 </span>
-                <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
               </button>
-              <div className="absolute left-0 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                <div className="bg-white rounded-lg shadow-lg border border-gray-100 py-3 w-56">
-                  <div className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2">
-                    <Home className="w-4 h-4 text-gray-500" />
-                    Home Decor
-                  </div>
-                  <div className="border-t border-gray-200 mx-4"></div>{" "}
-                  {/* Divider */}
-                  <div className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2">
-                    <Wrench className="w-4 h-4 text-gray-500" />
-                    Handicrafts
-                  </div>
-                  <div className="border-t border-gray-200 mx-4"></div>{" "}
-                  {/* Divider */}
-                  <div className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2">
-                    <Gift className="w-4 h-4 text-gray-500" />
-                    Gift Items
-                  </div>
-                </div>
-              </div>
+            </div>
+
+            <div className="group relative">
+              <button className="group inline-flex items-center space-x-1 text-gray-500 hover:text-[#0F5F38] transition-colors focus:outline-none">
+                <span className="font-bold  font-playfair text-base">
+                  About
+                </span>
+              </button>
             </div>
           </div>
         </div>
@@ -184,12 +167,9 @@ const Navbar = () => {
           <Button
             variant="ghost"
             size="icon"
-            className="relative text-gray-700 hover:text-[#0F5F38] transition-colors"
+            className="text-gray-700 hover:text-[#0F5F38] transition-colors"
           >
-            <ShoppingCart className="w-5 h-5" />
-            <span className="absolute -top-2 -right-2 bg-[#0F5F38] text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-medium">
-              0
-            </span>
+            <ShoppingBag className="w-5 h-5" />
           </Button>
           <button
             className="text-gray-700 hover:text-[#0F5F38] transition-colors"
@@ -214,17 +194,7 @@ const Navbar = () => {
               size="icon"
               className="text-gray-700 hover:text-[#0F5F38] transition-colors"
             >
-              <User className="w-5 h-5" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="relative text-gray-700 hover:text-[#0F5F38] transition-colors"
-            >
-              <ShoppingCart className="w-5 h-5" />
-              <span className="absolute -top-2 -right-2 bg-[#0F5F38] text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
-                0
-              </span>
+              <ShoppingBag className="w-5 h-5" />
             </Button>
           </div>
 
@@ -456,3 +426,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

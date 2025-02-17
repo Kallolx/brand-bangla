@@ -12,13 +12,13 @@ const LocationCard = ({ name, image, active, onClick }: LocationCardProps) => {
     <motion.button
       onClick={onClick}
       whileHover={{ scale: 1.02 }}
-      className="group cursor-pointer"
+      className="group cursor-pointer px-2 py-1"
     >
       <div 
         className={`
           relative h-[40px] rounded-md overflow-hidden flex items-center
           border border-gray-200 px-3
-          ${active ? 'bg-white shadow-sm border-gray-200' : 'bg-transparent hover:border-gray-300'}
+          ${active ? 'bg-white shadow-md border-gray-500' : 'bg-transparent hover:border-gray-500'}
           transition-all duration-200 hover:shadow-sm
         `}
       >

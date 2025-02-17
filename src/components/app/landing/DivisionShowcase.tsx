@@ -120,7 +120,7 @@ const DivisionShowcase = () => {
             {/* Location Cards */}
             <div>
               <h2 className="text-4xl font-bold font-playfair mb-9">DHAKA DIVISION</h2>
-              <div className="grid grid-cols-3 gap-5">
+              <div className="grid grid-cols-3 gap-2">
                 {locations.map((location) => (
                   <LocationCard
                     key={location.name}

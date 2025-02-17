@@ -7,9 +7,10 @@ const BrandShowcase = () => {
       <div 
         className="absolute inset-0 w-full h-full"
         style={{
-          backgroundImage: 'url("/images/background.jpg")',
-          backgroundSize: '500px',
-          opacity: 100
+          backgroundImage: 'url("/images/background2.jpg")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.6
         }}
       />
 
@@ -28,7 +29,7 @@ const BrandShowcase = () => {
             <img
               src="/images/map.svg"
               alt="Bangladesh Map"
-              className="w-[500px] h-auto"
+              className="w-[600px] h-auto"
             />
           </div>
         </motion.div>

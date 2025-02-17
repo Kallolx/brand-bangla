@@ -10,10 +10,10 @@ const Hero = () => {
   return (
     <div className="relative">
       {/* Hero Section */}
-      <div className="relative pt-24 mb-20">
+      <div className="relative pt-20 md:pt-24 mb-10 md:mb-20">
         {/* Video Section */}
-        <div className="mx-auto px-10 py-[20px]">
-          <div className="relative overflow-hidden rounded-none md:rounded-2xl h-[700px] md:h-[700px]">
+        <div className="mx-auto px-4 md:px-10 py-[20px]">
+          <div className="relative overflow-hidden rounded-xl md:rounded-2xl h-[300px] sm:h-[400px] md:h-[700px]">
             <video
               autoPlay
               loop
@@ -29,13 +29,13 @@ const Hero = () => {
             <div className="absolute inset-0 bg-black/30" />
             
             {/* Weather Widget */}
-            <div className="absolute top-6 right-6 flex items-center gap-4 z-10">
-              <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full">
-                <Cloud className="w-5 h-5 text-gray-700" />
-                <span className="font-inter font-medium text-gray-900">19°C / 13°C</span>
+            <div className="absolute top-4 md:top-6 right-4 md:right-6 flex items-center gap-2 md:gap-4 z-10">
+              <div className="hidden md:flex items-center gap-2 bg-white/50 backdrop-blur-sm px-4 md:px-6 py-2 md:py-3 rounded-full">
+                <Cloud className="w-4 md:w-5 h-4 md:h-5 text-gray-700" />
+                <span className="font-inter font-medium text-sm md:text-base text-gray-900">19°C / 13°C</span>
               </div>
-              <div className="bg-white/80 backdrop-blur-sm p-3 rounded-full">
-                <MapPin className="w-5 h-5 text-gray-700" />
+              <div className="bg-white/50 backdrop-blur-sm p-2 md:p-3 rounded-full">
+                <MapPin className="w-4 md:w-5 h-4 md:h-5 text-gray-700" />
               </div>
             </div>
           </div>
@@ -45,12 +45,12 @@ const Hero = () => {
         <Confetti className="fixed inset-0 w-full h-full pointer-events-none z-50" />
 
         {/* Content Section */}
-        <div className="max-w-7xl mx-auto px-6 py-8">
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-6 md:py-8">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 md:gap-8">
             {/* Title Section - Left Side */}
             <div className="flex-1 max-w-4xl">
-              <h1 className="font-playfair text-xl sm:text-3xl md:text-5xl font-semibold text-gray-900 leading-[1.2] tracking-wide">
-                <div className="flex items-baseline gap-x-3 mb-2">
+              <h1 className="font-playfair text-2xl sm:text-3xl md:text-5xl font-semibold text-gray-900 leading-[1.2] tracking-wide">
+                <div className="flex flex-wrap items-baseline gap-x-3 mb-2">
                   <span>Embrace</span>
                   <span className="text-[#B1894A]">
                     <WordRotate
@@ -66,37 +66,38 @@ const Hero = () => {
                   </span>
                   <span>With Exquisite</span>
                 </div>
-                <div className="flex items-baseline">
+                <div className="flex flex-wrap items-baseline gap-2">
                   <span className="text-[#4A5C2F]">Bangladeshi</span>
-                  <span className="ml-3">Craftsmanship</span>
+                  <span>Craftsmanship</span>
                 </div>
               </h1>
             </div>
 
-            {/* Buttons Section - Right Side */}
-            <div className="flex flex-row items-center gap-4 mt-8 lg:mt-0 lg:ml-8">
-              {/* Reels Button */}
+            {/* Buttons Section */}
+            <div className="flex flex-row items-center gap-4 w-full sm:w-auto">
+              {/* About Button */}
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 200, damping: 10 }}
+                className="flex-1 sm:flex-none"
               >
                 <Button
                   variant="outline"
-                  className="font-inter font-bold h-12 px-6 bg-white border-gray-400 hover:bg-gray-200 text-gray-700 transition-colors flex items-center justify-center whitespace-nowrap"
+                  className="w-full sm:w-auto font-inter font-bold h-12 px-6 bg-white border-gray-400 hover:bg-gray-200 text-gray-700 transition-colors flex items-center justify-center whitespace-nowrap"
                 >
-                  
                   About
                 </Button>
               </motion.div>
 
-              {/* Browse Product Button */}
+              {/* Explore Heritage Button */}
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 200, damping: 10 }}
+                className="flex-1 sm:flex-none"
               >
-                <Button className="font-inter h-12 px-6 bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white flex items-center justify-center whitespace-nowrap">
+                <Button className="w-full sm:w-auto font-inter h-12 px-6 bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white flex items-center justify-center whitespace-nowrap">
                   Explore Heritage
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
