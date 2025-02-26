@@ -1,30 +1,18 @@
-import Navbar from './components/app/landing/Navbar';
-import Hero from './components/app/landing/Hero';
-import CategoryCards from './components/app/landing/CategoryCards';
-import DivisionShowcase from './components/app/landing/DivisionShowcase';
-import RegionalCrafts from './components/app/landing/RegionalCrafts';
-import ProductFocus from './components/app/landing/ProductFocus';
-import BrandShowcase from './components/app/landing/BrandShowcase';
-import RmgShowcase from './components/app/landing/RmgShowcase';
-import NewArrival from './components/app/landing/NewArrival';
-import CallToAction from './components/app/landing/CallToAction';
-import Footer from './components/app/landing/Footer';
+import { Routes, Route } from "react-router-dom";
+import DivisionPage from "./pages/division/[name]";
+import Landing from "./components/app/landing/Landing";
+import { DivisionProvider } from "@/context/DivisionContext";
 
 function App() {
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
-      <Hero />
-      <CategoryCards />
-      <DivisionShowcase />
-      <RegionalCrafts />
-      <ProductFocus />
-      <BrandShowcase />
-      <RmgShowcase />
-      <NewArrival />
-      <CallToAction />
-      <Footer />
-    </div>
+    <DivisionProvider>
+      <div className="min-h-screen bg-white overflow-x-hidden">
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/division/:name" element={<DivisionPage />} />
+        </Routes>
+      </div>
+    </DivisionProvider>
   );
 }
 

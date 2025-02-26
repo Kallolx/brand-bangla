@@ -31,9 +31,13 @@ const RmgShowcase = () => {
             <p className="text-gray-500 text-base md:text-lg font-inter mb-8">
               Bangladesh's RMG industry ranks second globally, recognized for quality and competitiveness, driving economic growth and job creation.
             </p>
-            <Button className="bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white font-inter px-6 py-6">
-              Shop Quality Products
-            </Button>
+            <Button
+  className="bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white font-inter px-6 py-6"
+  onClick={() => window.location.href = "https://rnd.devevenboat.com/category"}
+>
+  Shop Quality Products
+</Button>
+
           </motion.div>
         </div>
       </div>

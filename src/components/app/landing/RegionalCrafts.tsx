@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
+import { motion } from "framer-motion";
 
 const RegionalCrafts = () => {
   const swiperRef = useRef<SwiperType>();
@@ -87,25 +88,63 @@ const RegionalCrafts = () => {
 
         {/* Region Tabs */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6 mb-8 sm:mb-10 md:mb-12">
-          <div className="font-inter flex items-center gap-4 sm:gap-6 md:gap-8 overflow-x-auto pb-2 sm:pb-4 scrollbar-hide">
-            {regions.map((region) => (
-              <button
-                key={region}
-                onClick={() => setActiveRegion(region)}
-                className={`relative pb-1 sm:pb-2 font-inter font-medium text-sm sm:text-base whitespace-nowrap transition-colors ${
-                  activeRegion === region
-                    ? "text-[#0F5F38]"
-                    : "text-gray-600 hover:text-gray-900"
-                }`}
-              >
-                {region}
-                {activeRegion === region && (
-                  <div className="absolute bottom-0 left-0 w-full h-0.5 bg-[#0F5F38]" />
-                )}
-              </button>
-            ))}
+          {/* Mobile Tabs */}
+          <div className="relative sm:hidden w-full">
+            <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-[#f3f3f3] to-transparent z-10" />
+            <div className="absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-l from-[#f3f3f3] to-transparent z-10" />
+            <div className="overflow-x-auto scrollbar-hide -mx-4 px-4">
+              <div className="flex items-center gap-6 min-w-max py-2">
+                {regions.map((region) => (
+                  <button
+                    key={region}
+                    onClick={() => setActiveRegion(region)}
+                    className={`relative font-inter font-medium text-sm whitespace-nowrap transition-colors ${
+                      activeRegion === region
+                        ? "text-[#0F5F38]"
+                        : "text-gray-600 hover:text-gray-900"
+                    }`}
+                  >
+                    {region}
+                    {activeRegion === region && (
+                      <motion.div 
+                        layoutId="activeTab"
+                        className="absolute -bottom-2 left-0 right-0 h-0.5 bg-[#0F5F38]"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
-          <Button className="font-inter px-4 sm:px-6 py-2.5 sm:py-3 md:py-3.5 bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white text-sm sm:text-base whitespace-nowrap">
+
+          {/* Desktop Tabs */}
+          <div className="hidden sm:block flex-grow overflow-hidden">
+            <div className="flex flex-wrap items-center gap-x-6 md:gap-x-8 gap-y-4">
+              {regions.map((region) => (
+                <button
+                  key={region}
+                  onClick={() => setActiveRegion(region)}
+                  className={`relative pb-2 font-inter font-medium text-base whitespace-nowrap transition-colors ${
+                    activeRegion === region
+                      ? "text-[#0F5F38]"
+                      : "text-gray-600 hover:text-gray-900"
+                  }`}
+                >
+                  <span>{region}</span>
+                  {activeRegion === region && (
+                    <motion.div 
+                      layoutId="activeTabDesktop"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#0F5F38]"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <Button className="sm:flex-shrink-0 font-inter px-4 sm:px-6 py-2.5 sm:py-3 md:py-3.5 bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white text-sm sm:text-base whitespace-nowrap">
             See All
           </Button>
         </div>
@@ -134,7 +173,7 @@ const RegionalCrafts = () => {
                   spaceBetween: 32,
                 },
               }}
-              className="!overflow-hidden py-2"
+              className="!overflow-visible py-2"
             >
               {products.map((product, index) => (
                 <SwiperSlide key={index}>

@@ -40,6 +40,7 @@ const NewArrival = () => {
       <Button 
         asChild 
         className="bg-[#0F5F38] hover:bg-[#0D4F30] text-white font-inter px-6 py-3 rounded-lg cursor-pointer"
+        onClick={() => window.location.href = "https://rnd.devevenboat.com/category"}
       >
         <motion.div
           whileHover={{ scale: 1.05 }}

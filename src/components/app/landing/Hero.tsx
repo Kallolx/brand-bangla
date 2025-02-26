@@ -1,9 +1,8 @@
-import { ArrowRight, MapPin, Cloud } from "lucide-react";
+import { ArrowRight} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Confetti } from "@/components/ui/confetti";
 import { WordRotate } from "@/components/ui/word-rotate";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 
 const Hero = () => {
   const rotatingWords = ["Tradition", "Customiz"];
@@ -13,12 +12,19 @@ const Hero = () => {
     setIsVideoLoading(false);
   };
 
+  const scrollToDivisionShowcase = () => {
+    const divisionShowcase = document.querySelector('#division-showcase');
+    if (divisionShowcase) {
+      divisionShowcase.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="relative">
       {/* Hero Section */}
       <div className="relative pt-16 sm:pt-20 md:pt-24 mb-6 sm:mb-10 md:mb-20">
         {/* Video Section */}
-        <div className="mx-auto px-3 sm:px-4 md:px-10 py-[12px] sm:py-[16px] md:py-[20px]">
+        <div className="mx-auto px-3 mt-10 sm:px-4 md:px-10 py-[12px] sm:py-[16px] md:py-[20px]">
           <div className="relative overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl h-[250px] sm:h-[400px] md:h-[500px] lg:h-[700px]">
             {/* Loading Animation */}
             {isVideoLoading && (
@@ -33,7 +39,7 @@ const Hero = () => {
               muted
               playsInline
               onLoadedData={handleVideoLoad}
-              className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500 ${
+              className={`absolute inset-0 w-full h-full object-cover object-center scale-[1.25] transition-opacity duration-500 ${
                 isVideoLoading ? 'opacity-0' : 'opacity-100'
               }`}
               style={{ objectPosition: "50% 50%" }}
@@ -41,25 +47,8 @@ const Hero = () => {
               <source src="/videos/hero.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-            
-            {/* Dark Overlay */}
-            <div className="absolute inset-0 bg-black/30" />
-            
-            {/* Weather Widget */}
-            <div className="absolute top-3 sm:top-4 md:top-6 right-3 sm:right-4 md:right-6 flex items-center gap-1.5 sm:gap-2 md:gap-4 z-10">
-              <div className="hidden sm:flex items-center gap-1.5 sm:gap-2 bg-white/50 backdrop-blur-sm px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-3 rounded-full">
-                <Cloud className="w-3.5 sm:w-4 md:w-5 h-3.5 sm:h-4 md:h-5 text-gray-700" />
-                <span className="font-inter font-medium text-xs sm:text-sm md:text-base text-gray-900">19°C / 13°C</span>
-              </div>
-              <div className="bg-white/50 backdrop-blur-sm p-1.5 sm:p-2 md:p-3 rounded-full">
-                <MapPin className="w-3.5 sm:w-4 md:w-5 h-3.5 sm:h-4 md:h-5 text-gray-700" />
-              </div>
-            </div>
           </div>
         </div>
-
-        {/* Confetti Effect */}
-        <Confetti className="fixed inset-0 w-full h-full pointer-events-none z-50" />
 
         {/* Content Section */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6 md:py-8">
@@ -102,6 +91,7 @@ const Hero = () => {
                 <Button
                   variant="outline"
                   className="w-full sm:w-auto font-inter font-bold h-10 sm:h-12 px-4 sm:px-6 bg-white border-gray-400 hover:bg-gray-200 text-gray-700 transition-colors flex items-center justify-center whitespace-nowrap text-sm sm:text-base"
+                  onClick={() => window.location.href = 'https://rnd.devevenboat.com/Who%20We%20Are'}
                 >
                   About
                 </Button>
@@ -114,7 +104,10 @@ const Hero = () => {
                 transition={{ type: "spring", stiffness: 200, damping: 10 }}
                 className="flex-1 sm:flex-none"
               >
-                <Button className="w-full sm:w-auto font-inter h-10 sm:h-12 px-4 sm:px-6 bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white flex items-center justify-center whitespace-nowrap text-sm sm:text-base">
+                <Button 
+                  className="w-full sm:w-auto font-inter h-10 sm:h-12 px-4 sm:px-6 bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white flex items-center justify-center whitespace-nowrap text-sm sm:text-base"
+                  onClick={scrollToDivisionShowcase}
+                >
                   Explore Heritage
                   <ArrowRight className="ml-2 w-3.5 sm:w-4 h-3.5 sm:h-4" />
                 </Button>

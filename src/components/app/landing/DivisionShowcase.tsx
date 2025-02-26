@@ -1,16 +1,21 @@
 import { Play, Pause, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import LocationCard from "@/components/ui/location-card";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
+import { useDivision } from '@/context/DivisionContext';
+import { useNavigate } from 'react-router-dom';
 
 const DivisionShowcase = () => {
+  const { selectedDivision } = useDivision();
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const swiperRef = useRef<SwiperType>();
-  const [activeLocation, setActiveLocation] = useState("Dhaka");
+  const [activeLocation, setActiveLocation] = useState(selectedDivision);
+  const slideShowInterval = useRef<NodeJS.Timeout>();
+  const navigate = useNavigate();
 
   const locations = [
     { name: "Dhaka", image: "dhaka" },
@@ -55,41 +60,68 @@ const DivisionShowcase = () => {
     }
   ];
 
-  const handleLocationClick = (locationName: string) => {
-    setActiveLocation(locationName);
-    // Reset video state
+  // Combine all locations into one array for slideshow
+  const allLocations = [
+    ...locations,
+    ...featuredLocations.map(loc => ({ name: loc.name, image: loc.image }))
+  ];
+
+  // Add effect to handle division changes
+  useEffect(() => {
+    setActiveLocation(selectedDivision);
     setIsPlaying(false);
     if (videoRef.current) {
-      videoRef.current.src = `/videos/${locationName.toLowerCase()}.mp4`;
+      videoRef.current.src = `/videos/${selectedDivision.toLowerCase()}.mp4`;
       videoRef.current.load();
     }
-  };
+  }, [selectedDivision]);
+
+  // Add effect to handle slideshow
+  useEffect(() => {
+    if (isPlaying) {
+      slideShowInterval.current = setInterval(() => {
+        setActiveLocation(prevLocation => {
+          const currentIndex = allLocations.findIndex(loc => loc.name === prevLocation);
+          const nextIndex = (currentIndex + 1) % allLocations.length;
+          return allLocations[nextIndex].name;
+        });
+      }, 3000); // Change image every 3 seconds
+    } else {
+      if (slideShowInterval.current) {
+        clearInterval(slideShowInterval.current);
+      }
+    }
+
+    return () => {
+      if (slideShowInterval.current) {
+        clearInterval(slideShowInterval.current);
+      }
+    };
+  }, [isPlaying]);
 
   const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
+    setIsPlaying(!isPlaying);
+  };
+
+  const handleLocationClick = (locationName: string) => {
+    setActiveLocation(locationName);
+    setIsPlaying(false); // Stop slideshow when manually selecting a location
+    console.log(`Navigating to /division/${locationName.toLowerCase()}`);
+    navigate(`/division/${locationName.toLowerCase()}`);
   };
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-white">
+    <section id="division-showcase" className="py-12 sm:py-16 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
-          {/* Left Side - Video Player */}
+          {/* Left Side - Image Display */}
           <div className="lg:col-span-7">
             <div className="relative aspect-[16/14] bg-gray-900 rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden">
-              <video
-                ref={videoRef}
-                className="absolute inset-0 w-full h-full object-cover object-center scale-110"
-                poster={`/images/locations/${activeLocation.toLowerCase()}.png`}
-              >
-                <source src={`/videos/${activeLocation.toLowerCase()}.mp4`} type="video/mp4" />
-              </video>
+              <img
+                src={`/images/locations/${activeLocation.toLowerCase()}.png`}
+                alt={activeLocation}
+                className="absolute inset-0 w-full h-full object-cover object-center scale-[1.15] transition-opacity duration-500"
+              />
               <div className="absolute inset-0 bg-black/30" />
               
               {/* Play/Pause Button */}
@@ -107,7 +139,10 @@ const DivisionShowcase = () => {
               {/* Location Info */}
               <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 bg-gradient-to-t from-black/80 to-transparent">
                 <h3 className="text-2xl sm:text-3xl md:text-4xl text-white font-playfair mb-3 sm:mb-4">{activeLocation}</h3>
-                <button className="inline-flex items-center gap-1.5 sm:gap-2 text-white bg-white/20 hover:bg-white/30 px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg backdrop-blur-sm transition-colors font-inter text-sm sm:text-base">
+                <button 
+                  onClick={() => handleLocationClick(activeLocation)}
+                  className="inline-flex items-center gap-1.5 sm:gap-2 text-white bg-white/20 hover:bg-white/30 px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg backdrop-blur-sm transition-colors font-inter text-sm sm:text-base"
+                >
                   <Play className="w-4 h-4 sm:w-5 sm:h-5" />
                   Explore Heritage
                 </button>

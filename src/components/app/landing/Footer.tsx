@@ -47,16 +47,16 @@ const Footer = () => {
             <h3 className="font-playfair text-lg text-gray-900 mb-6">Company</h3>
             <ul className="space-y-4 font-inter">
               <li>
-                <a href="#" className="text-gray-500 hover:text-[#0F5F38] transition-colors">About</a>
+                <a href="https://rnd.devevenboat.com/Who We Are" className="text-gray-500 hover:text-[#0F5F38] transition-colors">About</a>
               </li>
               <li>
-                <a href="#" className="text-gray-500 hover:text-[#0F5F38] transition-colors">Contact</a>
+                <a href="https://rnd.devevenboat.com/contact" className="text-gray-500 hover:text-[#0F5F38] transition-colors">Contact</a>
               </li>
               <li>
-                <a href="#" className="text-gray-500 hover:text-[#0F5F38] transition-colors">Careers</a>
+                <a href="https://rnd.devevenboat.com/Statement" className="text-gray-500 hover:text-[#0F5F38] transition-colors">Statement</a>
               </li>
               <li>
-                <a href="#" className="text-gray-500 hover:text-[#0F5F38] transition-colors">Our Journals</a>
+                <a href="https://rnd.devevenboat.com/Guiding Principles" className="text-gray-500 hover:text-[#0F5F38] transition-colors">Guiding Principles</a>
               </li>
             </ul>
           </div>
@@ -65,16 +65,19 @@ const Footer = () => {
           <div>
             <h3 className="font-playfair text-lg text-gray-900 mb-6">Stay up to date</h3>
             <div className="space-y-4">
-              <div className="flex gap-2">
+              <div className="flex flex-col gap-3">
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0F5F38]/20 focus:border-[#0F5F38] font-inter"
+                  className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0F5F38]/20 focus:border-[#0F5F38] font-inter"
                 />
-                <Button className="bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white font-inter whitespace-nowrap">
+                <Button className="w-full bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white font-inter">
                   Subscribe
                 </Button>
               </div>
+              <p className="text-xs text-gray-500 font-inter">
+                By subscribing you agree to with our Privacy Policy and provide consent to receive updates from our company.
+              </p>
             </div>
           </div>
         </div>
@@ -84,14 +87,15 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             {/* Copyright */}
             <p className="text-gray-500 font-inter text-sm">
-              © 2077 Brand Bangladesh. All rights reserved.
+              © 2025 Brand Bangladesh. All rights reserved.
+              <br />Developed By <a href="https://webbytestudio.unaux.com" className="text-gray-500 hover:text-[#0F5F38] transition-colors">WebByte Studio</a>
             </p>
 
             {/* Links */}
             <div className="flex items-center gap-6 font-inter text-sm">
-              <a href="#" className="text-gray-500 hover:text-[#0F5F38] transition-colors">Terms</a>
-              <a href="#" className="text-gray-500 hover:text-[#0F5F38] transition-colors">Privacy</a>
-              <a href="#" className="text-gray-500 hover:text-[#0F5F38] transition-colors">Cookies</a>
+              <a href="https://rnd.devevenboat.com/terms" className="text-gray-500 hover:text-[#0F5F38] transition-colors">Terms</a>
+              <a href="https://rnd.devevenboat.com/privacy" className="text-gray-500 hover:text-[#0F5F38] transition-colors">Privacy</a>
+              <a href="https://rnd.devevenboat.com/terms" className="text-gray-500 hover:text-[#0F5F38] transition-colors">Cookies</a>
             </div>
 
             {/* Payment Methods */}
@@ -112,4 +116,4 @@ const Footer = () => {
   );
 };
 
-export default Footer; 
+export default Footer;
