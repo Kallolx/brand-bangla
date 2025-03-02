@@ -1,7 +1,9 @@
 import { ArrowUpRight, Star } from "lucide-react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 interface CraftCardProps {
+  id: string;
   image: string;
   title: string;
   description: string;
@@ -10,13 +12,20 @@ interface CraftCardProps {
   priceRange: string;
 }
 
-const CraftCard = ({ image, title, description, rating, discount, priceRange }: CraftCardProps) => {
+const CraftCard = ({ id, image, title, description, rating, discount, priceRange }: CraftCardProps) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/products/${id}`);
+  };
+
   return (
     <motion.div
       whileHover={{ y: -10 }}
       className="group cursor-pointer"
+      onClick={handleClick}
     >
-      <div className="relative bg-white rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+      <div className="relative bg-white border border-gray-200 rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
         {/* Before Shadow */}
         <div className="absolute inset-0 -bottom-2 rounded-lg sm:rounded-xl md:rounded-2xl bg-black/5 -z-10 transition-all duration-300 group-hover:bottom-0" />
         
@@ -55,10 +64,10 @@ const CraftCard = ({ image, title, description, rating, discount, priceRange }: 
           </p>
 
           <div className="flex items-center justify-between border-t border-gray-100 pt-3 sm:pt-4">
-            <span className="text-[#0F5F38] font-inter font-medium text-sm sm:text-base">
+            <span className="text-black font-inter font-bold text-sm sm:text-base">
               {discount} Off
             </span>
-            <span className="text-gray-600 font-inter text-xs sm:text-sm">
+            <span className="text-gray-800 font-inter text-xs sm:text-sm">
               {priceRange}
             </span>
           </div>

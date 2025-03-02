@@ -106,8 +106,19 @@ const DivisionShowcase = () => {
   const handleLocationClick = (locationName: string) => {
     setActiveLocation(locationName);
     setIsPlaying(false); // Stop slideshow when manually selecting a location
-    console.log(`Navigating to /division/${locationName.toLowerCase()}`);
-    navigate(`/division/${locationName.toLowerCase()}`);
+    
+    // Check if the location is a main division
+    const isDivision = featuredLocations.some(loc => loc.name.toLowerCase() === locationName.toLowerCase()) || locationName.toLowerCase() === 'dhaka';
+    
+    if (isDivision) {
+      // Navigate to division page
+      console.log(`Navigating to division: /division/${locationName.toLowerCase()}`);
+      navigate(`/division/${locationName.toLowerCase()}`);
+    } else {
+      // Navigate to district page within Dhaka division
+      console.log(`Navigating to district: /division/dhaka/${locationName.toLowerCase()}`);
+      navigate(`/division/dhaka/${locationName.toLowerCase()}`);
+    }
   };
 
   return (

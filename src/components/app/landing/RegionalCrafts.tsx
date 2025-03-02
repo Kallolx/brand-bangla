@@ -6,10 +6,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const RegionalCrafts = () => {
   const swiperRef = useRef<SwiperType>();
   const [activeRegion, setActiveRegion] = useState("Khulna");
+  const navigate = useNavigate();
 
   const regions = [
     "Khulna",
@@ -24,30 +26,34 @@ const RegionalCrafts = () => {
 
   const products = [
     {
+      id: "jamdani-saree-1",
       image: "/images/products/1.jpg",
-      title: "Delicious Khejure Gur",
-      description: "How do you create compelling presentations that wow your colleagues and impress your managers?",
+      title: "Jamdani Saree",
+      description: "Exquisite handwoven fabric with intricate geometric and floral patterns.",
       rating: 5,
       discount: "15%",
-      priceRange: "৳300 - ৳1200"
+      priceRange: "৳300 - ৳1200",
     },
     {
+      id: "nokshi-katha-2",
       image: "/images/products/2.jpg",
       title: "Traditional Nokshi katha",
-      description: "How do you create compelling presentations that wow your colleagues and impress your managers?",
+      description: "Beautiful traditional embroidered quilt that tells stories through needlework.",
       rating: 5,
       discount: "10%",
-      priceRange: "৳100 - ৳1500"
+      priceRange: "৳100 - ৳1500",
     },
     {
+      id: "banarasi-saree-3",
       image: "/images/products/3.jpg",
-      title: "Golda Chingri/Prawn",
-      description: "How do you create compelling presentations that wow your colleagues and impress your managers?",
+      title: "Banarasi Saree",
+      description: "Luxurious silk saree with rich zari work and traditional motifs.",
       rating: 5,
       discount: "30%",
-      priceRange: "৳700 - ৳1500"
+      priceRange: "৳700 - ৳1500",
     },
     {
+      id: "shundorbon-honey-1",
       image: "/images/products/4.jpg",
       title: "Shundorbon Honey",
       description: "How do you create compelling presentations that wow your colleagues and impress your managers?",
@@ -56,6 +62,7 @@ const RegionalCrafts = () => {
       priceRange: "৳1200 - ৳2000"
     },
     {
+      id: "jamdani-saree-2",
       image: "/images/products/2.jpg",
       title: "Jamdani Saree",
       description: "Exquisite handwoven fabric with intricate geometric and floral patterns, a pride of Bengali heritage.",
@@ -64,6 +71,7 @@ const RegionalCrafts = () => {
       priceRange: "৳5000 - ৳50000"
     },
     {
+      id: "bamboo-crafts-1",
       image: "/images/products/1.jpg",
       title: "Bamboo Crafts",
       description: "Beautifully crafted sustainable bamboo products showcasing traditional Bengali craftsmanship.",
@@ -144,7 +152,10 @@ const RegionalCrafts = () => {
             </div>
           </div>
 
-          <Button className="sm:flex-shrink-0 font-inter px-4 sm:px-6 py-2.5 sm:py-3 md:py-3.5 bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white text-sm sm:text-base whitespace-nowrap">
+          <Button 
+            onClick={() => navigate('/products/regional-crafts')}
+            className="sm:flex-shrink-0 font-inter px-4 sm:px-6 py-2.5 sm:py-3 md:py-3.5 bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white text-sm sm:text-base whitespace-nowrap"
+          >
             See All
           </Button>
         </div>

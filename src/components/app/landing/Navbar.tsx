@@ -46,6 +46,16 @@ const Navbar = () => {
     setExpandedSection(expandedSection === section ? null : section);
   };
 
+  const divisions = [
+    { name: "Dhaka", path: "/division/dhaka" },
+    { name: "Chittagong", path: "/division/chittagong" },
+    { name: "Sylhet", path: "/division/sylhet" },
+    { name: "Rajshahi", path: "/division/rajshahi" },
+    { name: "Khulna", path: "/division/khulna" },
+    { name: "Barisal", path: "/division/barisal" },
+    { name: "Rangpur", path: "/division/rangpur" }
+  ];
+
   return (
     <div className="fixed top-0 left-0 right-0 z-50">
       {/* Top Banner - Simplified for mobile */}
@@ -168,69 +178,22 @@ const Navbar = () => {
                 </button>
                 <div className="absolute left-0 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   <div className="bg-white rounded-lg shadow-lg border border-gray-100 py-3 w-56">
-                    <div 
-                      className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2"
-                      onClick={() => setSelectedDivision('Dhaka')}
-                    >
-                      <MapPin className="w-4 h-4 text-gray-500" />
-                      Dhaka
-                    </div>
-                    <div className="border-t border-gray-200 mx-4"></div>
-                    <div 
-                      className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2"
-                      onClick={() => setSelectedDivision('Chittagong')}
-                    >
-                      <MapPin className="w-4 h-4 text-gray-500" />
-                      Chittagong
-                    </div>
-                    <div className="border-t border-gray-200 mx-4"></div>
-                    <div 
-                      className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2"
-                      onClick={() => setSelectedDivision('Khulna')}
-                    >
-                      <MapPin className="w-4 h-4 text-gray-500" />
-                      Khulna
-                    </div>
-                    <div className="border-t border-gray-200 mx-4"></div>
-                    <div 
-                      className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2"
-                      onClick={() => setSelectedDivision('Rajshahi')}
-                    >
-                      <MapPin className="w-4 h-4 text-gray-500" />
-                      Rajshahi
-                    </div>
-                    <div className="border-t border-gray-200 mx-4"></div>
-                    <div 
-                      className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2"
-                      onClick={() => setSelectedDivision('Sylhet')}
-                    >
-                      <MapPin className="w-4 h-4 text-gray-500" />
-                      Sylhet
-                    </div>
-                    <div className="border-t border-gray-200 mx-4"></div>
-                    <div 
-                      className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2"
-                      onClick={() => setSelectedDivision('Barisal')}
-                    >
-                      <MapPin className="w-4 h-4 text-gray-500" />
-                      Barisal
-                    </div>
-                    <div className="border-t border-gray-200 mx-4"></div>
-                    <div 
-                      className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2"
-                      onClick={() => setSelectedDivision('Rangpur')}
-                    >
-                      <MapPin className="w-4 h-4 text-gray-500" />
-                      Rangpur
-                    </div>
-                    <div className="border-t border-gray-200 mx-4"></div>
-                    <div 
-                      className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2"
-                      onClick={() => setSelectedDivision('Mymensingh')}
-                    >
-                      <MapPin className="w-4 h-4 text-gray-500" />
-                      Mymensingh
-                    </div>
+                    {divisions.map((division) => (
+                      <>
+                        <Link
+                          key={division.name}
+                          to={division.path}
+                          onClick={() => setSelectedDivision(division.name)}
+                          className="font-inter text-sm text-gray-600 hover:text-[#0F5F38] hover:bg-gray-50 px-4 py-2 cursor-pointer transition-colors flex items-center gap-2"
+                        >
+                          <MapPin className="w-4 h-4 text-gray-500" />
+                          {division.name}
+                        </Link>
+                        {division.name !== divisions[divisions.length - 1].name && (
+                          <div className="border-t border-gray-200 mx-4"></div>
+                        )}
+                      </>
+                    ))}
                   </div>
                 </div>
               </div>
