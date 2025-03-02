@@ -1,24 +1,38 @@
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const CategoryCards = () => {
+  const navigate = useNavigate();
+
   const categories = [
     {
       title: "Traditional Clothes",
       description: "Discover authentic Bangladeshi attire, from elegant Jamdani sarees to traditional Panjabis.",
       image: "/images/products/1.jpg",
+      path: "/products/traditional-clothes"
     },
     {
       title: "Traditional Foods",
       description: "Explore the rich flavors of Bangladesh with our curated selection of traditional delicacies.",
       image: "/images/products/food.jpg",
+      path: "/products/traditional-foods"
     },
     {
       title: "Traditional Crafts",
       description: "Experience the artistry of Bangladesh through handcrafted treasures and cultural artifacts.",
       image: "/images/products/3.jpg",
+      path: "/products/traditional-crafts"
     },
   ];
+
+  const handleNavigate = (path: string) => {
+    navigate(path);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
 
   return (
     <section className="relative pt-16 sm:pt-24 md:pt-32 lg:pt-40 pb-16 sm:pb-24 md:pb-32 lg:pb-40">
@@ -40,6 +54,7 @@ const CategoryCards = () => {
               key={index}
               whileHover={{ y: -10 }}
               className="group cursor-pointer"
+              onClick={() => handleNavigate(category.path)}
             >
               <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
                 {/* Image */}

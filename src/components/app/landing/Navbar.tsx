@@ -21,6 +21,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
   const { setSelectedDivision } = useDivision();
+  const [mobileSearchVisible, setMobileSearchVisible] = useState(false);
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -56,6 +57,12 @@ const Navbar = () => {
     { name: "Rangpur", path: "/division/rangpur" }
   ];
 
+  const handleSearch = (searchInput: string) => {
+    if (searchInput) {
+      window.location.href = `https://rnd.devevenboat.com/category?search=${encodeURIComponent(searchInput)}`;
+    }
+  };
+
   return (
     <div className="fixed top-0 left-0 right-0 z-50">
       {/* Top Banner - Simplified for mobile */}
@@ -76,7 +83,6 @@ const Navbar = () => {
                 aria-label="Select currency"
               >
                 <option value="BDT" className="text-gray-900">BDT</option>
-                <option value="USDT" className="text-gray-900">USDT</option>
               </select>
               <span className="text-white/40">|</span>
               <select 
@@ -85,7 +91,6 @@ const Navbar = () => {
                 aria-label="Select language"
               >
                 <option value="ENG" className="text-gray-900">ENG</option>
-                <option value="BN" className="text-gray-900">বাংলা</option>
               </select>
             </div>
             
@@ -223,15 +228,30 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center gap-4 lg:hidden">
+          {/* Mobile Actions */}
+          <div className="flex items-center gap-3 lg:hidden">
+            {/* Mobile Search Toggle */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-gray-700 hover:text-[#0F5F38] transition-colors"
+              onClick={() => setMobileSearchVisible(!mobileSearchVisible)}
+            >
+              <Search className="w-5 h-5" />
+            </Button>
+
+            {/* Shopping Bag */}
             <Button
               variant="ghost"
               size="icon"
               className="text-gray-700 hover:text-[#0F5F38] transition-colors"
             >
-              <ShoppingBag className="w-5 h-5" />
+              <a href="https://rnd.devevenboat.com/item/compare/view" className="flex items-center justify-center w-full h-full">
+                <ShoppingBag className="w-5 h-5" />
+              </a>
             </Button>
+
+            {/* Menu Toggle */}
             <button
               className="text-gray-700 hover:text-[#0F5F38] transition-colors"
               onClick={() => setIsMobileMenuOpen(true)}
@@ -301,6 +321,38 @@ const Navbar = () => {
           </div>
         </div>
 
+        {/* Mobile Search Bar */}
+        <div
+          className={`${
+            mobileSearchVisible ? "max-h-16 opacity-100 mt-4" : "max-h-0 opacity-0"
+          } transition-all duration-300 overflow-hidden lg:hidden`}
+        >
+          <div className="relative flex items-center px-2">
+            <input
+              type="text"
+              placeholder="Search products..."
+              className="w-full pl-4 pr-10 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-[#0F5F38] focus:border-[#0F5F38]"
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') {
+                  const target = e.target as HTMLInputElement;
+                  handleSearch(target.value);
+                }
+              }}
+            />
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute right-3 text-gray-700 hover:text-[#0F5F38] transition-colors"
+              onClick={() => {
+                const searchInput = document.querySelector('input[type="text"]') as HTMLInputElement;
+                handleSearch(searchInput?.value);
+              }}
+            >
+              <Search className="w-5 h-5" />
+            </Button>
+          </div>
+        </div>
+
         {/* Mobile Sidebar */}
         <div
           className={`fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 lg:hidden ${
@@ -327,196 +379,123 @@ const Navbar = () => {
 
             {/* Sidebar Content */}
             <div className="overflow-y-auto h-[calc(100%-60px)] py-4">
-              {/* Traditional Section */}
+              {/* Products Section */}
               <div className="px-4">
                 <button
-                  onClick={() => toggleSection("traditional")}
+                  onClick={() => toggleSection("products")}
                   className="flex items-center justify-between w-full py-2 text-left"
                 >
                   <span className="font-playfair font-bold text-gray-900">
-                    Traditional
+                    Products
                   </span>
                   <ChevronRight
                     className={`w-5 h-5 transition-transform duration-200 ${
-                      expandedSection === "traditional" ? "rotate-90" : ""
+                      expandedSection === "products" ? "rotate-90" : ""
                     }`}
                   />
                 </button>
                 <div
                   className={`space-y-2 pl-4 overflow-hidden transition-all duration-200 ${
-                    expandedSection === "traditional"
-                      ? "max-h-48 opacity-100"
+                    expandedSection === "products"
+                      ? "max-h-[400px] opacity-100"
                       : "max-h-0 opacity-0"
                   }`}
                 >
                   <a
-                    href="#"
+                    href="https://rnd.devevenboat.com/category/fashion-and-Beauty"
                     className="block py-2 text-gray-600 hover:text-[#0F5F38] transition-colors"
                   >
-                    Jamdani Saree
+                    Fashion & Beauty
                   </a>
                   <a
-                    href="#"
+                    href="https://rnd.devevenboat.com/category/fashion-and-Beauty/women-clothing"
                     className="block py-2 text-gray-600 hover:text-[#0F5F38] transition-colors"
                   >
-                    Salwar Kameez
+                    Women Clothing
                   </a>
                   <a
-                    href="#"
+                    href="https://rnd.devevenboat.com/category/fashion-and-Beauty/men-clothing"
                     className="block py-2 text-gray-600 hover:text-[#0F5F38] transition-colors"
                   >
-                    Panjabi
+                    Men Clothing
+                  </a>
+                  <a
+                    href="https://rnd.devevenboat.com/category/fashion-and-Beauty/baby-clothings"
+                    className="block py-2 text-gray-600 hover:text-[#0F5F38] transition-colors"
+                  >
+                    Baby Clothing
+                  </a>
+                  <a
+                    href="https://rnd.devevenboat.com/category/fashion-and-Beauty/shoes"
+                    className="block py-2 text-gray-600 hover:text-[#0F5F38] transition-colors"
+                  >
+                    Shoes
+                  </a>
+                  <a
+                    href="https://rnd.devevenboat.com/category/fashion-and-Beauty/headgear"
+                    className="block py-2 text-gray-600 hover:text-[#0F5F38] transition-colors"
+                  >
+                    Headgear
                   </a>
                 </div>
               </div>
 
-              {/* Men Section */}
-              <div className="px-4">
+              {/* Divisions Section */}
+              <div className="px-4 mt-4">
                 <button
-                  onClick={() => toggleSection("men")}
+                  onClick={() => toggleSection("divisions")}
                   className="flex items-center justify-between w-full py-2 text-left"
                 >
                   <span className="font-playfair font-bold text-gray-900">
-                    Men
+                    Divisions
                   </span>
                   <ChevronRight
                     className={`w-5 h-5 transition-transform duration-200 ${
-                      expandedSection === "men" ? "rotate-90" : ""
+                      expandedSection === "divisions" ? "rotate-90" : ""
                     }`}
                   />
                 </button>
                 <div
                   className={`space-y-2 pl-4 overflow-hidden transition-all duration-200 ${
-                    expandedSection === "men"
-                      ? "max-h-48 opacity-100"
+                    expandedSection === "divisions"
+                      ? "max-h-[400px] opacity-100"
                       : "max-h-0 opacity-0"
                   }`}
                 >
-                  <a
-                    href="#"
-                    className="block py-2 text-gray-600 hover:text-[#0F5F38] transition-colors"
-                  >
-                    Shirts
-                  </a>
-                  <a
-                    href="#"
-                    className="block py-2 text-gray-600 hover:text-[#0F5F38] transition-colors"
-                  >
-                    Pants
-                  </a>
-                  <a
-                    href="#"
-                    className="block py-2 text-gray-600 hover:text-[#0F5F38] transition-colors"
-                  >
-                    Accessories
-                  </a>
+                  {divisions.map((division) => (
+                    <Link
+                      key={division.name}
+                      to={division.path}
+                      onClick={() => {
+                        setSelectedDivision(division.name);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="block py-2 text-gray-600 hover:text-[#0F5F38] transition-colors"
+                    >
+                      {division.name}
+                    </Link>
+                  ))}
                 </div>
               </div>
 
-              {/* Women Section */}
+              {/* About Link */}
+              <div className="px-4 mt-4">
+                <a
+                  href="https://rnd.devevenboat.com/Who%20We%20Are"
+                  className="block py-2 font-playfair font-bold text-gray-900 hover:text-[#0F5F38] transition-colors"
+                >
+                  About
+                </a>
+              </div>
+
+              {/* Contact Link */}
               <div className="px-4">
-                <button
-                  onClick={() => toggleSection("women")}
-                  className="flex items-center justify-between w-full py-2 text-left"
+                <a
+                  href="https://rnd.devevenboat.com/contact"
+                  className="block py-2 font-playfair font-bold text-gray-900 hover:text-[#0F5F38] transition-colors"
                 >
-                  <span className="font-playfair font-bold text-gray-900">
-                    Women
-                  </span>
-                  <ChevronRight
-                    className={`w-5 h-5 transition-transform duration-200 ${
-                      expandedSection === "women" ? "rotate-90" : ""
-                    }`}
-                  />
-                </button>
-                <div
-                  className={`space-y-2 pl-4 overflow-hidden transition-all duration-200 ${
-                    expandedSection === "women"
-                      ? "max-h-48 opacity-100"
-                      : "max-h-0 opacity-0"
-                  }`}
-                >
-                  <a
-                    href="#"
-                    className="block py-2 text-gray-600 hover:text-[#0F5F38] transition-colors"
-                  >
-                    Dresses
-                  </a>
-                  <a
-                    href="#"
-                    className="block py-2 text-gray-600 hover:text-[#0F5F38] transition-colors"
-                  >
-                    Tops
-                  </a>
-                  <a
-                    href="#"
-                    className="block py-2 text-gray-600 hover:text-[#0F5F38] transition-colors"
-                  >
-                    Jewelry
-                  </a>
-                </div>
-              </div>
-
-              {/* Others Section */}
-              <div className="px-4">
-                <button
-                  onClick={() => toggleSection("others")}
-                  className="flex items-center justify-between w-full py-2 text-left"
-                >
-                  <span className="font-playfair font-bold text-gray-900">
-                    Others
-                  </span>
-                  <ChevronRight
-                    className={`w-5 h-5 transition-transform duration-200 ${
-                      expandedSection === "others" ? "rotate-90" : ""
-                    }`}
-                  />
-                </button>
-                <div
-                  className={`space-y-2 pl-4 overflow-hidden transition-all duration-200 ${
-                    expandedSection === "others"
-                      ? "max-h-48 opacity-100"
-                      : "max-h-0 opacity-0"
-                  }`}
-                >
-                  <a
-                    href="#"
-                    className="block py-2 text-gray-600 hover:text-[#0F5F38] transition-colors"
-                  >
-                    Home Decor
-                  </a>
-                  <a
-                    href="#"
-                    className="block py-2 text-gray-600 hover:text-[#0F5F38] transition-colors"
-                  >
-                    Handicrafts
-                  </a>
-                  <a
-                    href="#"
-                    className="block py-2 text-gray-600 hover:text-[#0F5F38] transition-colors"
-                  >
-                    Gift Items
-                  </a>
-                </div>
-              </div>
-
-              {/* Bottom Actions */}
-              <div className="absolute bottom-0 left-0 right-0 border-t bg-white p-4 space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start"
-                    size="sm"
-                  >
-                    <Search className="w-4 h-4 mr-2" />
-                    Search
-                  </Button>
-                </div>
-                <Button 
-                  className="w-full bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white"
-                  onClick={() => window.location.href = 'https://rnd.devevenboat.com/user/login'}
-                >
-                  Log in / Sign up
-                </Button>
+                  Contact
+                </a>
               </div>
             </div>
           </div>

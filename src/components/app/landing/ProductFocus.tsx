@@ -1,9 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 
 const ProductFocus = () => {
-  const navigate = useNavigate();
 
   return (
     <section className="max-w-7xl mx-auto px-6 py-20">
@@ -21,25 +18,11 @@ const ProductFocus = () => {
           <div className="flex flex-wrap gap-4">
             {/* Traditional Clothes Button */}
               <Button 
-                onClick={() => navigate('/products/traditional-clothes')}
-                className="bg-white hover:bg-[#0F5F38] hover:text-white text-black rounded-lg font-inter font-medium px-8 py-6 border border-gray-200"
-              >
-                Products
-              </Button>
-
-            {/* Open Shop Button */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 200, damping: 12 }}
-            >
-              <Button 
-                onClick={() => navigate('/shop/open-shop')}
-                className="bg-[#0F5F38] hover:bg-[#0D4F30] text-white rounded-lg font-inter font-medium px-8 py-6"
+                onClick={() => window.location.href = 'https://rnd.devevenboat.com/user/vendor-register'}
+                className="bg-[#0F5F38] hover:text-white text-white rounded-lg font-inter font-medium px-8 py-6 border border-gray-200"
               >
                 Open Your Shop
               </Button>
-            </motion.div>
           </div>
         </div>
 

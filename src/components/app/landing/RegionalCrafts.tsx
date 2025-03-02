@@ -101,25 +101,18 @@ const RegionalCrafts = () => {
             <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-[#f3f3f3] to-transparent z-10" />
             <div className="absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-l from-[#f3f3f3] to-transparent z-10" />
             <div className="overflow-x-auto scrollbar-hide -mx-4 px-4">
-              <div className="flex items-center gap-6 min-w-max py-2">
+              <div className="grid grid-flow-col auto-cols-fr gap-2 py-1 min-w-max">
                 {regions.map((region) => (
                   <button
                     key={region}
                     onClick={() => setActiveRegion(region)}
-                    className={`relative font-inter font-medium text-sm whitespace-nowrap transition-colors ${
+                    className={`relative px-3 py-1.5 rounded-full border transition-all duration-200 ${
                       activeRegion === region
-                        ? "text-[#0F5F38]"
-                        : "text-gray-600 hover:text-gray-900"
+                        ? "border-[#0F5F38] bg-[#0F5F38]/5 text-[#0F5F38]"
+                        : "border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50"
                     }`}
                   >
-                    {region}
-                    {activeRegion === region && (
-                      <motion.div 
-                        layoutId="activeTab"
-                        className="absolute -bottom-2 left-0 right-0 h-0.5 bg-[#0F5F38]"
-                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                      />
-                    )}
+                    <span className="text-xs font-medium whitespace-nowrap">{region}</span>
                   </button>
                 ))}
               </div>

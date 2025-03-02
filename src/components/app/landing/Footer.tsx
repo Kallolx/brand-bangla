@@ -222,9 +222,6 @@ const Footer = () => {
 
             {/* Payment Methods */}
             <div className="flex items-center gap-5">
-              <span className="text-gray-500 font-inter text-sm">
-                We accept
-              </span>
               <div className="flex items-center gap-6">
                 <img
                   src="/icons/payments/paypal.png"

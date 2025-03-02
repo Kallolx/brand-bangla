@@ -40,8 +40,8 @@ const DivisionShowcase = () => {
     },
     {
       id: "03",
-      name: "Shylet",
-      image: "shylet",
+      name: "Sylhet",
+      image: "sylhet",
     },
     {
       id: "04",
@@ -205,7 +205,7 @@ const DivisionShowcase = () => {
                   onBeforeInit={(swiper) => {
                     swiperRef.current = swiper;
                   }}
-                  slidesPerView={1.2}
+                  slidesPerView={1}
                   spaceBetween={8}
                   breakpoints={{
                     640: {

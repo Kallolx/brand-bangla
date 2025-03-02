@@ -11,7 +11,8 @@ import DistrictPage from "@/pages/division/dhaka/[name]";
 import RegionalCraftsPage from "@/pages/products/regional-crafts";
 import TraditionalClothesPage from "@/pages/products/traditional-clothes";
 import ProductDetails from "@/pages/products/product-details";
-import OpenShopPage from "@/pages/shop/open-shop";
+import TraditionalFoodsPage from "@/pages/products/traditional-foods";
+import TraditionalCraftsPage from "@/pages/products/traditional-crafts";
 import { DivisionProvider } from "@/context/DivisionContext";
 
 const App = () => {
@@ -30,8 +31,9 @@ const App = () => {
           <Route path="/division/dhaka/:name" element={<DistrictPage />} />
           <Route path="/products/regional-crafts" element={<RegionalCraftsPage />} />
           <Route path="/products/traditional-clothes" element={<TraditionalClothesPage />} />
+          <Route path="/products/traditional-foods" element={<TraditionalFoodsPage />} />
+          <Route path="/products/traditional-crafts" element={<TraditionalCraftsPage />} />
           <Route path="/products/:id" element={<ProductDetails />} />
-          <Route path="/shop/open-shop" element={<OpenShopPage />} />
         </Routes>
       </div>
     </DivisionProvider>
