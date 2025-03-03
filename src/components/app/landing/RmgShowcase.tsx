@@ -23,25 +23,29 @@ const RmgShowcase = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="max-w-3xl"
+            className="max-w-3xl mx-auto md:mx-0"
           >
-            <h2 className="text-3xl md:text-[40px] font-bold font-playfair text-gray-900 mb-4 leading-tight">
-              Bangladesh's RMG industry is leading in the 2nd position all over
-              the world.
-            </h2>
-            <p className="text-gray-500 text-base md:text-lg font-inter mb-8">
-              Bangladesh's RMG industry ranks second globally, recognized for
-              quality and competitiveness, driving economic growth and job
-              creation.
-            </p>
-            <Button
-              className="bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white font-inter px-6 py-6"
-              onClick={() =>
-                (window.location.href = "https://rnd.devevenboat.com/category")
-              }
-            >
-              Shop Quality Products
-            </Button>
+            <div className="text-center md:text-left">
+              <h2 className="text-3xl md:text-[40px] font-bold font-playfair text-gray-900 mb-4 leading-tight">
+                Bangladesh's RMG industry is leading in the 2nd position all over
+                the world.
+              </h2>
+              <p className="text-gray-500 text-base md:text-lg font-inter mb-8">
+                Bangladesh's RMG industry ranks second globally, recognized for
+                quality and competitiveness, driving economic growth and job
+                creation.
+              </p>
+              <div className="flex justify-center md:justify-start">
+                <Button
+                  className="bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white font-inter px-6 py-6"
+                  onClick={() =>
+                    window.location.href = "https://rnd.devevenboat.com/category"
+                  }
+                >
+                  Shop Quality Products
+                </Button>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>

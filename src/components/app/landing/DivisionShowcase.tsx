@@ -7,9 +7,10 @@ import { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
 import { useDivision } from '@/context/DivisionContext';
 import { useNavigate } from 'react-router-dom';
+import { divisions } from '@/data/divisions';
 
 const DivisionShowcase = () => {
-  const { selectedDivision } = useDivision();
+  const { selectedDivision, setSelectedDivision } = useDivision();
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const swiperRef = useRef<SwiperType>();
@@ -17,54 +18,12 @@ const DivisionShowcase = () => {
   const slideShowInterval = useRef<NodeJS.Timeout>();
   const navigate = useNavigate();
 
-  const locations = [
-    { name: "Dhaka", image: "dhaka" },
-    { name: "Kishoreganj", image: "kishoreganj" },
-    { name: "Gazipur", image: "gazipur" },
-    { name: "Rajbari", image: "rajbari" },
-    { name: "Gopalganj", image: "gopalganj" },
-    { name: "Faridpur", image: "faridpur" },
-    { name: "Shariatpur", image: "shariatpur" },
-    { name: "Tangail", image: "tangail" },
-    { name: "Narsingdi", image: "narsingdi" },
-    { name: "Madaripur", image: "madaripur" },
-    { name: "Manikganj", image: "manikganj" },
-    { name: "Munshiganj", image: "munshiganj" }
-  ];
+  // Get current division data
+  const currentDivision = divisions.find(div => div.name.toLowerCase() === selectedDivision.toLowerCase()) || divisions[0];
+  const districts = currentDivision.districts;
 
-  const featuredLocations = [
-    {
-      id: "02",
-      name: "Chittagong",
-      image: "chittagong",
-    },
-    {
-      id: "03",
-      name: "Sylhet",
-      image: "sylhet",
-    },
-    {
-      id: "04",
-      name: "Rajshahi",
-      image: "rajshahi",
-    },
-    {
-      id: "05",
-      name: "Khulna",
-      image: "khulna",
-    },
-    {
-      id: "06",
-      name: "Barisal",
-      image: "barisal",
-    }
-  ];
-
-  // Combine all locations into one array for slideshow
-  const allLocations = [
-    ...locations,
-    ...featuredLocations.map(loc => ({ name: loc.name, image: loc.image }))
-  ];
+  // Get other divisions for the slider
+  const otherDivisions = divisions.filter(div => div.name !== currentDivision.name);
 
   // Add effect to handle division changes
   useEffect(() => {
@@ -81,9 +40,9 @@ const DivisionShowcase = () => {
     if (isPlaying) {
       slideShowInterval.current = setInterval(() => {
         setActiveLocation(prevLocation => {
-          const currentIndex = allLocations.findIndex(loc => loc.name === prevLocation);
-          const nextIndex = (currentIndex + 1) % allLocations.length;
-          return allLocations[nextIndex].name;
+          const currentIndex = districts.findIndex(loc => loc.name === prevLocation);
+          const nextIndex = (currentIndex + 1) % districts.length;
+          return districts[nextIndex].name;
         });
       }, 3000); // Change image every 3 seconds
     } else {
@@ -97,7 +56,7 @@ const DivisionShowcase = () => {
         clearInterval(slideShowInterval.current);
       }
     };
-  }, [isPlaying]);
+  }, [isPlaying, districts]);
 
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
@@ -108,17 +67,20 @@ const DivisionShowcase = () => {
     setIsPlaying(false); // Stop slideshow when manually selecting a location
     
     // Check if the location is a main division
-    const isDivision = featuredLocations.some(loc => loc.name.toLowerCase() === locationName.toLowerCase()) || locationName.toLowerCase() === 'dhaka';
+    const clickedDivision = divisions.find(div => div.name.toLowerCase() === locationName.toLowerCase());
     
-    if (isDivision) {
-      // Navigate to division page
-      console.log(`Navigating to division: /division/${locationName.toLowerCase()}`);
-      navigate(`/division/${locationName.toLowerCase()}`);
+    if (clickedDivision) {
+      // If clicking a division, just update the selected division without navigation
+      setSelectedDivision(clickedDivision.name);
     } else {
-      // Navigate to district page within Dhaka division
-      console.log(`Navigating to district: /division/dhaka/${locationName.toLowerCase()}`);
-      navigate(`/division/dhaka/${locationName.toLowerCase()}`);
+      // If clicking a district, navigate to the district page within current division
+      const encodedDistrictName = encodeURIComponent(locationName.toLowerCase());
+      navigate(`/division/${currentDivision.name.toLowerCase()}/${encodedDistrictName}`);
     }
+  };
+
+  const handleExploreClick = () => {
+    navigate(`/division/${currentDivision.name.toLowerCase()}`);
   };
 
   return (
@@ -151,7 +113,7 @@ const DivisionShowcase = () => {
               <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 bg-gradient-to-t from-black/80 to-transparent">
                 <h3 className="text-2xl sm:text-3xl md:text-4xl text-white font-playfair mb-3 sm:mb-4">{activeLocation}</h3>
                 <button 
-                  onClick={() => handleLocationClick(activeLocation)}
+                  onClick={handleExploreClick}
                   className="inline-flex items-center gap-1.5 sm:gap-2 text-white bg-white/20 hover:bg-white/30 px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg backdrop-blur-sm transition-colors font-inter text-sm sm:text-base"
                 >
                   <Play className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -162,25 +124,25 @@ const DivisionShowcase = () => {
           </div>
 
           {/* Right Side - Location Cards and Featured Locations */}
-          <div className="lg:col-span-5 flex flex-col gap-6 sm:gap-8">
-            {/* Location Cards */}
-            <div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-playfair mb-6 sm:mb-8 md:mb-9">DHAKA DIVISION</h2>
+          <div className="lg:col-span-5 flex flex-col h-full">
+            {/* Location Cards Section */}
+            <div className="flex-grow">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-playfair mb-6 sm:mb-8 md:mb-9">{currentDivision.name.toUpperCase()} DIVISION</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 sm:gap-2">
-                {locations.map((location) => (
+                {districts.map((district) => (
                   <LocationCard
-                    key={location.name}
-                    name={location.name}
-                    image={location.image}
-                    active={location.name === activeLocation}
-                    onClick={() => handleLocationClick(location.name)}
+                    key={district.name}
+                    name={district.name}
+                    image={district.image}
+                    active={district.name === activeLocation}
+                    onClick={() => handleLocationClick(district.name)}
                   />
                 ))}
               </div>
             </div>
 
-            {/* Featured Locations Slider */}
-            <div className="relative">
+            {/* Featured Locations Slider - Fixed at Bottom */}
+            <div className="mt-6 sm:mt-8">
               <div className="mb-3 sm:mb-4 flex items-center justify-between">
                 <h3 className="text-lg sm:text-xl font-medium font-playfair text-gray-900">Other Divisions</h3>
                 {/* Navigation Controls */}
@@ -215,32 +177,32 @@ const DivisionShowcase = () => {
                   }}
                   className="!overflow-hidden"
                 >
-                  {featuredLocations.map((location) => (
-                    <SwiperSlide key={location.id}>
+                  {otherDivisions.map((division) => (
+                    <SwiperSlide key={division.id}>
                       <motion.div
                         whileHover={{ scale: 1.02 }}
                         className={`group cursor-pointer ${
-                          activeLocation === location.name ? 'ring-2 ring-[#0F5F38]' : ''
+                          activeLocation === division.name ? 'ring-2 ring-[#0F5F38]' : ''
                         }`}
-                        onClick={() => handleLocationClick(location.name)}
+                        onClick={() => handleLocationClick(division.name)}
                       >
                         <div className="relative aspect-square rounded-lg sm:rounded-xl overflow-hidden">
                           <img
-                            src={`/images/locations/${location.image}.png`}
-                            alt={location.name}
+                            src={`/images/locations/${division.image}.png`}
+                            alt={division.name}
                             className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                           />
                           <div className={`absolute inset-0 transition-colors ${
-                            activeLocation === location.name 
+                            activeLocation === division.name 
                               ? 'bg-black/50'
                               : 'bg-black/40 group-hover:bg-black/50'
                           }`} />
                           <div className="absolute inset-0 p-3 sm:p-4 flex flex-col justify-between">
                             <div className="flex items-center gap-1.5 sm:gap-2">
-                              <span className="text-white/80 font-inter text-xs sm:text-sm">{location.id}</span>
+                              <span className="text-white/80 font-inter text-xs sm:text-sm">{division.id}</span>
                               <div className="h-px flex-1 bg-white/40" />
                             </div>
-                            <h3 className="text-base sm:text-lg md:text-xl text-white font-playfair">{location.name}</h3>
+                            <h3 className="text-base sm:text-lg md:text-xl text-white font-playfair">{division.name}</h3>
                           </div>
                         </div>
                       </motion.div>

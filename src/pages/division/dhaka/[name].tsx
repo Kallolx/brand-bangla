@@ -27,6 +27,7 @@ const DistrictPage = () => {
   return (
     <DistrictTemplate 
       name={name} 
+      divisionName="Dhaka"
       data={districtData[name.toLowerCase()]} 
     />
   );

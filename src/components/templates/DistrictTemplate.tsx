@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 interface DistrictTemplateProps {
   name: string;
+  divisionName: string;
   data: {
     title: string;
     description: string;
@@ -27,9 +28,10 @@ interface DistrictTemplateProps {
   };
 }
 
-const DistrictTemplate = ({ name, data }: DistrictTemplateProps) => {
+const DistrictTemplate = ({ name, divisionName, data }: DistrictTemplateProps) => {
   const navigate = useNavigate();
   const formattedName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+  const formattedDivisionName = divisionName.charAt(0).toUpperCase() + divisionName.slice(1).toLowerCase();
 
   return (
     <div className="min-h-screen bg-white">
@@ -43,7 +45,7 @@ const DistrictTemplate = ({ name, data }: DistrictTemplateProps) => {
           className="absolute inset-0 w-full h-full object-cover object-center"
           onError={(e) => {
             const target = e.target as HTMLImageElement;
-            target.src = '/images/locations/dhaka.png';
+            target.src = `/images/locations/${divisionName.toLowerCase()}.png`;
           }}
         />
         
@@ -52,10 +54,10 @@ const DistrictTemplate = ({ name, data }: DistrictTemplateProps) => {
           <Button
             variant="ghost"
             className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white"
-            onClick={() => navigate('/division/dhaka')}
+            onClick={() => navigate(`/division/${divisionName.toLowerCase()}`)}
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Dhaka Division
+            Back to {formattedDivisionName} Division
           </Button>
         </div>
 
@@ -154,7 +156,7 @@ const DistrictTemplate = ({ name, data }: DistrictTemplateProps) => {
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="font-medium">Division:</span>
-                  <span>Dhaka</span>
+                  <span>{formattedDivisionName}</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="font-medium">Famous for:</span>

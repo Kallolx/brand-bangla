@@ -24,9 +24,12 @@ const LocationCard = ({ name, image, active, onClick }: LocationCardProps) => {
       >
         <div className="relative w-5 h-5 sm:w-6 sm:h-6 rounded-md overflow-hidden shrink-0">
           <img
-            src={`/images/locations/${image}.png`}
+            src={`/images/locations/thumbnails/${image}.png`}
             alt={name}
             className="w-full h-full object-cover"
+            loading="lazy"
+            width={24}
+            height={24}
           />
         </div>
         <span className={`font-inter ml-2 sm:ml-3 text-xs sm:text-sm font-medium truncate ${

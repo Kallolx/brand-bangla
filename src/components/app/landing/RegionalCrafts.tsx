@@ -1,28 +1,15 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CraftCard from "@/components/ui/craft-card";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
-import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 const RegionalCrafts = () => {
   const swiperRef = useRef<SwiperType>();
-  const [activeRegion, setActiveRegion] = useState("Khulna");
   const navigate = useNavigate();
-
-  const regions = [
-    "Khulna",
-    "Chittagong",
-    "Rajshahi",
-    "Barisal",
-    "Sylhet",
-    "Dhaka",
-    "Rangpur",
-    "Mymansingh"
-  ];
 
   const products = [
     {
@@ -86,71 +73,22 @@ const RegionalCrafts = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="mb-8 sm:mb-10 md:mb-12">
-          <h2 className="font-bold font-playfair text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-3 sm:mb-4">
-            Explore Authentic Crafts by Region
-          </h2>
-          <p className="font-inter text-gray-500 text-sm sm:text-base max-w-2xl">
-            Explore our traditional Bangladeshi products, from Jamdani sarees to handcrafted accessories. Choose your favorite today!
-          </p>
-        </div>
-
-        {/* Region Tabs */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6 mb-8 sm:mb-10 md:mb-12">
-          {/* Mobile Tabs */}
-          <div className="relative sm:hidden w-full">
-            <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-[#f3f3f3] to-transparent z-10" />
-            <div className="absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-l from-[#f3f3f3] to-transparent z-10" />
-            <div className="overflow-x-auto scrollbar-hide -mx-4 px-4">
-              <div className="grid grid-flow-col auto-cols-fr gap-2 py-1 min-w-max">
-                {regions.map((region) => (
-                  <button
-                    key={region}
-                    onClick={() => setActiveRegion(region)}
-                    className={`relative px-3 py-1.5 rounded-full border transition-all duration-200 ${
-                      activeRegion === region
-                        ? "border-[#0F5F38] bg-[#0F5F38]/5 text-[#0F5F38]"
-                        : "border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50"
-                    }`}
-                  >
-                    <span className="text-xs font-medium whitespace-nowrap">{region}</span>
-                  </button>
-                ))}
-              </div>
+          <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-4">
+            <div className="text-center sm:text-left w-full">
+              <h2 className="font-bold font-playfair text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-3 sm:mb-4">
+                Explore Authentic Crafts by Region
+              </h2>
+              <p className="font-inter text-gray-500 text-sm sm:text-base max-w-2xl mx-auto sm:mx-0">
+                Explore our traditional Bangladeshi products, from Jamdani sarees to handcrafted accessories. Choose your favorite today!
+              </p>
             </div>
+            <Button 
+              onClick={() => navigate('/products/regional-crafts')}
+              className="font-inter px-8 sm:px-6 py-2.5 sm:py-3 md:py-3.5 bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white text-sm sm:text-base whitespace-nowrap"
+            >
+              See All
+            </Button>
           </div>
-
-          {/* Desktop Tabs */}
-          <div className="hidden sm:block flex-grow overflow-hidden">
-            <div className="flex flex-wrap items-center gap-x-6 md:gap-x-8 gap-y-4">
-              {regions.map((region) => (
-                <button
-                  key={region}
-                  onClick={() => setActiveRegion(region)}
-                  className={`relative pb-2 font-inter font-medium text-base whitespace-nowrap transition-colors ${
-                    activeRegion === region
-                      ? "text-[#0F5F38]"
-                      : "text-gray-600 hover:text-gray-900"
-                  }`}
-                >
-                  <span>{region}</span>
-                  {activeRegion === region && (
-                    <motion.div 
-                      layoutId="activeTabDesktop"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#0F5F38]"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                    />
-                  )}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <Button 
-            onClick={() => navigate('/products/regional-crafts')}
-            className="sm:flex-shrink-0 font-inter px-4 sm:px-6 py-2.5 sm:py-3 md:py-3.5 bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white text-sm sm:text-base whitespace-nowrap"
-          >
-            See All
-          </Button>
         </div>
 
         {/* Products Grid */}

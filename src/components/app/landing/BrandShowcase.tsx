@@ -39,16 +39,21 @@ const BrandShowcase = () => {
 
   return (
     <section className="relative pt-12 sm:pt-16 md:pt-20 lg:pt-24 pb-12 sm:pb-16 md:pb-20 lg:pb-24">
-      {/* Background Image with Overlay */}
+      {/* Main Background Text */}
       <div 
-        className={`absolute inset-0 w-full h-full opacity-60 ${styles.backgroundImage}`}
+        className={styles.mainBackground}
         style={{
-          backgroundImage: 'url("/images/background2.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundImage: 'url("/images/background-text.jpg")',
         }}
-      >
-      </div>
+      />
+
+      {/* Illustration Background */}
+      <div 
+        className={styles.illustrationBackground}
+        style={{
+          backgroundImage: 'url("/images/background-illustration.png")',
+        }}
+      />
 
       {/* Content Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">

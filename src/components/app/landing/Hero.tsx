@@ -1,7 +1,6 @@
 import { ArrowRight} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WordRotate } from "@/components/ui/word-rotate";
-import { motion } from "framer-motion";
 import { useState} from "react";
 
 const Hero = () => {
@@ -39,7 +38,7 @@ const Hero = () => {
               muted
               playsInline
               onLoadedData={handleVideoLoad}
-              className={`absolute inset-0 w-full h-full object-cover object-center scale-[1.25] transition-opacity duration-500 ${
+              className={`absolute inset-0 w-full h-full object-cover object-center scale-[1.5] transition-opacity duration-500 ${
                 isVideoLoading ? 'opacity-0' : 'opacity-100'
               }`}
               style={{ objectPosition: "50% 50%" }}
@@ -52,66 +51,43 @@ const Hero = () => {
 
         {/* Content Section */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6 md:py-8">
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 sm:gap-6 md:gap-8">
-            {/* Title Section - Left Side */}
-            <div className="flex-1 max-w-4xl">
-              <h1 className="font-playfair text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold text-gray-900 leading-[1.2] tracking-wide">
-                <div className="flex flex-wrap items-baseline gap-x-2 sm:gap-x-3 mb-1 sm:mb-2">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 sm:gap-8">
+            {/* Title Section */}
+            <div className="max-w-4xl">
+              <h1 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 leading-[1.2] tracking-wide text-center lg:text-left">
+                <div className="flex flex-wrap items-baseline justify-center lg:justify-start gap-x-2 sm:gap-x-3 mb-2 sm:mb-3">
                   <span>Embrace</span>
                   <span className="text-[#B1894A]">
                     <WordRotate
                       words={rotatingWords}
-                      duration={2500}
-                      motionProps={{
-                        initial: { opacity: 0, y: -50 },
-                        animate: { opacity: 1, y: 0 },
-                        exit: { opacity: 0, y: 50 },
-                        transition: { duration: 0.25, ease: "easeOut" },
-                      }}
+                      duration={2000}
+                      className="inline-block"
                     />
                   </span>
-                  <span>With Exquisite</span>
-                </div>
-                <div className="flex flex-wrap items-baseline gap-1.5 sm:gap-2">
-                  <span className="text-[#4A5C2F]">Bangladeshi</span>
-                  <span>Craftsmanship</span>
+                  <span>With Exquisite</span> <span className="text-[#4A5C2F]">Bangladeshi</span>  <span>Craftsmanship</span>
                 </div>
               </h1>
             </div>
 
             {/* Buttons Section */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto mt-4 sm:mt-0">
+            <div className="flex flex-row items-center gap-3 justify-center lg:justify-end">
               {/* About Button */}
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 200, damping: 10 }}
-                className="flex-1 sm:flex-none"
+              <Button
+                variant="outline"
+                className="min-w-[140px] font-inter font-medium h-11 px-6 bg-white/80 backdrop-blur-sm border-gray-300 hover:bg-white hover:border-gray-400 text-gray-700 transition-all duration-300"
+                onClick={() => window.location.href = 'https://rnd.devevenboat.com/Who%20We%20Are'}
               >
-                <Button
-                  variant="outline"
-                  className="w-full sm:w-auto font-inter font-bold h-10 sm:h-12 px-4 sm:px-6 bg-white border-gray-400 hover:bg-gray-200 text-gray-700 transition-colors flex items-center justify-center whitespace-nowrap text-sm sm:text-base"
-                  onClick={() => window.location.href = 'https://rnd.devevenboat.com/Who%20We%20Are'}
-                >
-                  About
-                </Button>
-              </motion.div>
+                About
+              </Button>
 
               {/* Explore Heritage Button */}
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 200, damping: 10 }}
-                className="flex-1 sm:flex-none"
+              <Button 
+                className="min-w-[140px] font-inter h-11 px-6 bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white transition-all duration-300 group"
+                onClick={scrollToDivisionShowcase}
               >
-                <Button 
-                  className="w-full sm:w-auto font-inter h-10 sm:h-12 px-4 sm:px-6 bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white flex items-center justify-center whitespace-nowrap text-sm sm:text-base"
-                  onClick={scrollToDivisionShowcase}
-                >
-                  Explore Heritage
-                  <ArrowRight className="ml-2 w-3.5 sm:w-4 h-3.5 sm:h-4" />
-                </Button>
-              </motion.div>
+                Explore Heritage
+                <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Button>
             </div>
           </div>
         </div>

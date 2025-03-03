@@ -7,21 +7,26 @@ import Footer from "@/components/app/landing/Footer";
 import { Button } from "@/components/ui/button";
 import CraftCard from "@/components/ui/craft-card";
 import CallToAction from "@/components/app/landing/CallToAction";
+import { useCart } from "@/context/CartContext";
+import { useWishlist } from "@/context/WishlistContext";
+
 const ProductDetails = () => {
   useParams();
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState("red");
   const [activeTab, setActiveTab] = useState<"info" | "reviews">("info");
+  const { addToCart } = useCart();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
 
   useEffect(() => {
-    // Scroll to top when component mounts or when district changes
     window.scrollTo({
       top: 0,
       left: 0,
       behavior: "smooth",
     });
   }, []);
+
   // Mock product data
   const product = {
     name: "Banarasi Saree",
@@ -37,7 +42,19 @@ const ProductDetails = () => {
       "Eros etiam ut turpis fea est porta aliquam impeger consectetuer sapienm et dos lectrum.",
     rating: 5,
     reviews: 12,
-    colors: ["red", "blue", "green", "purple"],
+    colors: ["red", "blue", "green", "purple"] as const,
+  };
+
+  // Update selected image when color changes
+  useEffect(() => {
+    // Find the index of the selected color and set it as the selected image
+    const colorIndex = product.colors.indexOf(selectedColor as typeof product.colors[number]);
+    setSelectedImage(colorIndex);
+  }, [selectedColor]);
+
+  // Handle color selection
+  const handleColorSelect = (color: typeof product.colors[number]) => {
+    setSelectedColor(color);
   };
 
   // Mock related products
@@ -99,6 +116,32 @@ const ProductDetails = () => {
     },
   ];
 
+  const handleAddToCart = () => {
+    addToCart({
+      id: Date.now().toString(), // You might want to use a proper ID from your product data
+      name: product.name,
+      price: product.price,
+      quantity: quantity,
+      image: product.images[selectedImage],
+      color: selectedColor
+    });
+    // You can add a toast notification here if you want
+  };
+
+  const handleWishlistToggle = () => {
+    const productId = Date.now().toString(); // You might want to use a proper ID from your product data
+    if (isInWishlist(productId)) {
+      removeFromWishlist(productId);
+    } else {
+      addToWishlist({
+        id: productId,
+        name: product.name,
+        price: product.price,
+        image: product.images[selectedImage]
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -106,8 +149,8 @@ const ProductDetails = () => {
       <main className="pt-44 pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           {/* Product Title and Reviews Count */}
-          <div className="flex items-center justify-between mb-6">
-            <h1 className="font-playfair text-4xl font-bold text-gray-900">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+            <h1 className="font-playfair text-3xl sm:text-4xl font-bold text-gray-900">
               {product.name}
             </h1>
             <div className="flex items-center gap-2">
@@ -116,7 +159,7 @@ const ProductDetails = () => {
                   <span key={i} className="text-yellow-400">★</span>
                 ))}
               </div>
-              <span className="text-gray-500">({product.reviews} reviews)</span>
+              <span className="font-inter text-gray-500">({product.reviews} reviews)</span>
             </div>
           </div>
 
@@ -124,7 +167,7 @@ const ProductDetails = () => {
           <div className="flex gap-4 mb-8">
             <button
               onClick={() => setActiveTab("info")}
-              className={`px-6 py-2 rounded-lg font-medium transition-all ${
+              className={`font-inter px-6 py-2 rounded-lg font-medium transition-all ${
                 activeTab === "info" 
                   ? "bg-[#0F5F38] text-white" 
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
@@ -134,7 +177,7 @@ const ProductDetails = () => {
             </button>
             <button
               onClick={() => setActiveTab("reviews")}
-              className={`px-6 py-2 rounded-lg font-medium transition-all ${
+              className={`font-inter px-6 py-2 rounded-lg font-medium transition-all ${
                 activeTab === "reviews"
                   ? "bg-[#0F5F38] text-white"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
@@ -151,7 +194,7 @@ const ProductDetails = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="grid grid-cols-1 lg:grid-cols-2 gap-12"
+                className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12"
               >
                 {/* Left - Image Gallery */}
                 <div className="space-y-4">
@@ -163,10 +206,13 @@ const ProductDetails = () => {
                     />
                   </div>
                   <div className="grid grid-cols-4 gap-4">
-                    {product.images.map((image, index) => (
+                    {product.images.map((image: string, index: number) => (
                       <button
                         key={index}
-                        onClick={() => setSelectedImage(index)}
+                        onClick={() => {
+                          setSelectedImage(index);
+                          setSelectedColor(product.colors[index]);
+                        }}
                         className={`aspect-square rounded-lg border-2 overflow-hidden ${
                           selectedImage === index ? "border-[#0F5F38]" : "border-gray-200"
                         }`}
@@ -193,20 +239,23 @@ const ProductDetails = () => {
                   </div>
 
                   <div className="space-y-3">
-                    <h3 className="font-medium text-gray-900">Description:</h3>
-                    <p className="text-gray-600">{product.description}</p>
-                    <button className="text-[#0F5F38] font-medium">
+                    <h3 className="font-inter font-medium text-gray-900">Description:</h3>
+                    <p className="font-inter text-gray-600">{product.description}</p>
+                    <button className="font-inter text-[#0F5F38] font-medium">
                       See More
                     </button>
                   </div>
 
                   <div className="space-y-3">
-                    <h3 className="font-medium text-gray-900">Color</h3>
+                    <h3 className="font-inter font-medium text-gray-900">Color</h3>
                     <div className="flex gap-2">
-                      {product.colors.map((color) => (
+                      {product.colors.map((color, index) => (
                         <button
                           key={color}
-                          onClick={() => setSelectedColor(color)}
+                          onClick={() => {
+                            handleColorSelect(color);
+                            setSelectedImage(index);
+                          }}
                           className={`w-8 h-8 rounded-full ${
                             selectedColor === color
                               ? "ring-2 ring-[#0F5F38] ring-offset-2"
@@ -218,32 +267,45 @@ const ProductDetails = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-6 mt-8">
-                    <div className="flex items-center border border-gray-300 rounded-lg">
+                  {/* Quantity and Add to Cart Section */}
+                  <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-8">
+                    {/* Quantity Selector */}
+                    <div className="flex h-12 sm:h-14 items-center border border-gray-300 rounded-lg w-fit">
                       <button
                         onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                        className="px-4 py-2 text-gray-600 hover:text-[#0F5F38]"
+                        className="w-10 sm:w-12 h-full flex items-center justify-center text-gray-600 hover:text-[#0F5F38] transition-colors"
                       >
                         -
                       </button>
-                      <span className="px-4 py-2 border-x border-gray-300">
+                      <span className="font-inter w-12 sm:w-14 h-full flex items-center justify-center border-x border-gray-300">
                         {quantity}
                       </span>
                       <button
                         onClick={() => setQuantity(quantity + 1)}
-                        className="px-4 py-2 text-gray-600 hover:text-[#0F5F38]"
+                        className="w-10 sm:w-12 h-full flex items-center justify-center text-gray-600 hover:text-[#0F5F38] transition-colors"
                       >
                         +
                       </button>
                     </div>
 
-                    <Button className="flex-1 bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white py-6">
-                      Add to Cart
-                    </Button>
+                    {/* Add to Cart and Wishlist */}
+                    <div className="flex gap-4 flex-1">
+                      <Button 
+                        onClick={handleAddToCart}
+                        className="flex-1 font-inter bg-[#0F5F38] hover:bg-[#0F5F38]/90 text-white h-12 sm:h-14 px-8"
+                      >
+                        Add to Cart
+                      </Button>
 
-                    <Button className="bg-white border border-gray-200 hover:bg-gray-50 p-6">
-                      <Heart className="w-5 h-5 text-gray-600" />
-                    </Button>
+                      <Button 
+                        onClick={handleWishlistToggle}
+                        className={`bg-white border border-gray-200 hover:bg-gray-50 h-12 sm:h-14 w-12 sm:w-14 flex items-center justify-center p-0 ${
+                          isInWishlist(Date.now().toString()) ? 'text-red-500' : 'text-gray-600'
+                        }`}
+                      >
+                        <Heart className="w-5 h-5" />
+                      </Button>
+                    </div>
                   </div>
                 </div>
 
@@ -265,19 +327,19 @@ const ProductDetails = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="space-y-8"
+                className="grid grid-cols-1 gap-6 sm:gap-8"
               >
                 {reviews.map((review) => (
                   <div
                     key={review.id}
-                    className="border-b border-gray-200 pb-6"
+                    className="border border-gray-200 rounded-lg p-4 sm:p-6"
                   >
-                    <div className="flex items-center justify-between mb-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 mb-4">
                       <div>
-                        <h3 className="font-medium text-gray-900">
+                        <h3 className="font-inter font-medium text-gray-900">
                           {review.name}
                         </h3>
-                        <div className="flex items-center gap-2">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                           <div className="flex">
                             {[...Array(5)].map((_, i) => (
                               <Star
@@ -290,13 +352,13 @@ const ProductDetails = () => {
                               />
                             ))}
                           </div>
-                          <span className="text-sm text-gray-500">
+                          <span className="font-inter text-sm text-gray-500">
                             {new Date(review.date).toLocaleDateString()}
                           </span>
                         </div>
                       </div>
                     </div>
-                    <p className="text-gray-600">{review.comment}</p>
+                    <p className="font-inter text-gray-600">{review.comment}</p>
                   </div>
                 ))}
               </motion.div>

@@ -38,11 +38,15 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
           <div className="space-y-6">
-            <img
-              src="/images/logo.svg"
-              alt="Brand Bangladesh"
-              className="h-12 w-auto"
-            />
+            <div className="relative inline-block">
+              <img
+                src="/images/logo.svg"
+                alt="Brand Bangladesh"
+                className="h-12 w-auto"
+              />
+              <span className="absolute -top-4 -right-3 lg:text-[18px] sm:text-[14px] font-bold text-[#0F5F38]">®</span>
+            </div>
+            
             <div className="space-y-4 text-gray-500 font-inter">
               <p>268/A, Bashundhara R/A Block-I, Road-4,</p>
               <p>Dhaka, 1229</p>

@@ -16,12 +16,18 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Shirt, ShirtIcon } from "lucide-react";
 import { useDivision } from '@/context/DivisionContext';
+import { useCart } from '@/context/CartContext';
+import { CartModal } from "@/components/ui/CartModal";
+import { useWishlist } from '@/context/WishlistContext';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
   const { setSelectedDivision } = useDivision();
   const [mobileSearchVisible, setMobileSearchVisible] = useState(false);
+  const { cartCount } = useCart();
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const { wishlistCount } = useWishlist();
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -54,7 +60,8 @@ const Navbar = () => {
     { name: "Rajshahi", path: "/division/rajshahi" },
     { name: "Khulna", path: "/division/khulna" },
     { name: "Barisal", path: "/division/barisal" },
-    { name: "Rangpur", path: "/division/rangpur" }
+    { name: "Rangpur", path: "/division/rangpur" },
+    { name: "Mymensingh", path: "/division/mymensingh" }
   ];
 
   const handleSearch = (searchInput: string) => {
@@ -120,12 +127,13 @@ const Navbar = () => {
       <nav className="bg-white shadow-sm py-4 md:py-8 px-4 md:px-6 font-inter">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center md:space-x-16">
-            <Link to="/" className="flex items-center">
+            <Link to="/" className="flex items-center relative">
               <img
                 src="/images/logo.svg"
                 alt="Grand Bazaar"
                 className="h-8 md:h-12 w-auto"
               />
+              <span className="absolute -top-4 -right-3 lg:text-[20px] sm:text-[14px] font-bold text-[#0F5F38]">®</span>
             </Link>
 
             <div className="hidden lg:flex items-center space-x-10">
@@ -244,11 +252,15 @@ const Navbar = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="text-gray-700 hover:text-[#0F5F38] transition-colors"
+              className="text-gray-700 hover:text-[#0F5F38] transition-colors relative"
+              onClick={() => setIsCartOpen(true)}
             >
-              <a href="https://rnd.devevenboat.com/item/compare/view" className="flex items-center justify-center w-full h-full">
-                <ShoppingBag className="w-5 h-5" />
-              </a>
+              <ShoppingBag className="w-5 h-5" />
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-[#0F5F38] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                  {cartCount}
+                </span>
+              )}
             </Button>
 
             {/* Menu Toggle */}
@@ -286,19 +298,28 @@ const Navbar = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-gray-700 hover:text-[#0F5F38] hover:bg-[#0F5F38]/10 transition-all duration-200"
+                className="text-gray-700 hover:text-[#0F5F38] hover:bg-[#0F5F38]/10 transition-all duration-200 relative"
+                onClick={() => setIsCartOpen(true)}
               >
-                <a href="https://rnd.devevenboat.com/item/compare/view" className="flex items-center justify-center w-full h-full">
-                  <ShoppingBag className="w-5 h-5" />
-                </a>
+                <ShoppingBag className="w-5 h-5" />
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-[#0F5F38] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
               </Button>
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-gray-700 hover:text-[#0F5F38] hover:bg-[#0F5F38]/10 transition-all duration-200"
+                className="text-gray-700 hover:text-[#0F5F38] hover:bg-[#0F5F38]/10 transition-all duration-200 relative"
               >
                 <a href="https://rnd.devevenboat.com/user/login" className="flex items-center justify-center w-full h-full">
                   <Heart className="w-5 h-5" />
+                  {wishlistCount > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-[#0F5F38] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                      {wishlistCount}
+                    </span>
+                  )}
                 </a>
               </Button>
               <Button
@@ -501,6 +522,8 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+
+      <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </div>
   );
 };
