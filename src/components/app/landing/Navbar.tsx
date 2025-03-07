@@ -409,7 +409,7 @@ const Navbar = () => {
                   className="flex items-center justify-between w-full py-2 text-left"
                 >
                   <span className="font-playfair font-bold text-gray-900">
-                    Products
+                    Categories
                   </span>
                   <ChevronRight
                     className={`w-5 h-5 transition-transform duration-200 ${
