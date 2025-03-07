@@ -16,7 +16,6 @@ import KhulnaDistrictPage from "@/pages/division/khulna/[name]";
 import BarisalDistrictPage from "@/pages/division/barisal/[name]";
 import RangpurDistrictPage from "@/pages/division/rangpur/[name]";
 import MymensinghDistrictPage from "@/pages/division/mymensingh/[name]";
-
 import RegionalCraftsPage from "@/pages/products/regional-crafts";
 import TraditionalClothesPage from "@/pages/products/traditional-clothes";
 import ProductDetails from "@/pages/products/product-details";
@@ -25,6 +24,7 @@ import TraditionalCraftsPage from "@/pages/products/traditional-crafts";
 import { DivisionProvider } from "@/context/DivisionContext";
 import { CartProvider } from '@/context/CartContext';
 import { WishlistProvider } from '@/context/WishlistContext';
+import WelcomeModal from "@/components/app/landing/WelcomeModal";
 
 const App = () => {
   return (
@@ -62,6 +62,7 @@ const App = () => {
               <Route path="/products/traditional-crafts" element={<TraditionalCraftsPage />} />
               <Route path="/products/:id" element={<ProductDetails />} />
             </Routes>
+            <WelcomeModal />
           </div>
         </DivisionProvider>
       </WishlistProvider>

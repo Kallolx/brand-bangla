@@ -42,7 +42,7 @@ const RmgShowcase = () => {
                     window.location.href = "https://rnd.devevenboat.com/category"
                   }
                 >
-                  Shop Quality Products
+                  Shop Quality Categories
                 </Button>
               </div>
             </div>

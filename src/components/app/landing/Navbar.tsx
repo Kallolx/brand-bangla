@@ -133,14 +133,16 @@ const Navbar = () => {
                 alt="Grand Bazaar"
                 className="h-8 md:h-12 w-auto"
               />
-              <span className="absolute -top-4 -right-3 lg:text-[20px] sm:text-[14px] font-bold text-[#0F5F38]">®</span>
+              <span className="absolute -top-2 -right-4">
+                <img src="/icons/registered.png" alt="Logo Icon" className="w-4 h-4" />
+              </span>
             </Link>
 
             <div className="hidden lg:flex items-center space-x-10">
               <div className="group relative">
                 <button className="group inline-flex items-center space-x-1 text-gray-500 hover:text-[#0F5F38] transition-colors focus:outline-none">
                   <span className="font-bold font-playfair text-base">
-                    Products
+                    Categories
                   </span>
                   <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
                 </button>

@@ -44,7 +44,9 @@ const Footer = () => {
                 alt="Brand Bangladesh"
                 className="h-12 w-auto"
               />
-              <span className="absolute -top-4 -right-3 lg:text-[18px] sm:text-[14px] font-bold text-[#0F5F38]">®</span>
+              <span className="absolute -top-2 -right-4">
+                <img src="/icons/registered.png" alt="Logo Icon" className="w-4 h-4" />
+              </span>
             </div>
             
             <div className="space-y-4 text-gray-500 font-inter">
@@ -58,7 +60,7 @@ const Footer = () => {
           {/* Product Links */}
           <div>
             <h3 className="font-playfair text-lg text-gray-900 mb-6">
-              Product
+              Categories
             </h3>
             <ul className="space-y-4 font-inter">
               <li>
