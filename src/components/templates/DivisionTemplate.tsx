@@ -29,7 +29,7 @@ const DivisionTemplate = ({ data }: DivisionTemplateProps) => {
   // Filter and paginate products
   const filteredProducts = useMemo(() => {
     // In a real app, you would filter based on category
-    return data.products;
+    return data.products || [];
   }, [data.products, activeCategory]);
 
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
@@ -116,7 +116,10 @@ const DivisionTemplate = ({ data }: DivisionTemplateProps) => {
           {/* Products Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 place-items-center md:place-items-start">
             {paginatedProducts.map((product: Product, index: number) => (
-              <CraftCard key={index} {...product} />
+              <CraftCard 
+                key={index}
+                {...product}
+              />
             ))}
           </div>
 
