@@ -47,14 +47,6 @@ const BrandShowcase = () => {
         }}
       />
 
-      {/* Illustration Background */}
-      <div 
-        className={styles.illustrationBackground}
-        style={{
-          backgroundImage: 'url("/images/background-illustration.png")',
-        }}
-      />
-
       {/* Content Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
         {/* Map Container */}
