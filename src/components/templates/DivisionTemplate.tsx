@@ -46,7 +46,7 @@ const DivisionTemplate = ({ data }: DivisionTemplateProps) => {
       <div className="min-h-screen bg-white">
         {/* Title Section */}
         <div className="max-w-7xl mx-auto pt-48">
-          <h1 className="text-start font-playfair text-4xl md:text-5xl lg:text-6xl font-semibold">
+          <h1 className="text-center md:text-start font-playfair text-4xl md:text-5xl lg:text-6xl font-semibold">
             {data.title}
           </h1>
         </div>
@@ -80,15 +80,15 @@ const DivisionTemplate = ({ data }: DivisionTemplateProps) => {
 
         {/* Products Section */}
         <div className="max-w-7xl mx-auto px-6 py-16">
-          <h2 className="font-playfair text-3xl font-bold mb-4">
+          <h2 className="font-playfair text-3xl font-bold mb-4 text-center md:text-left">
             Explore The Local Specialties
           </h2>
-          <p className="font-inter text-gray-600 max-w-3xl mb-12">
+          <p className="font-inter text-gray-600 max-w-3xl mb-12 text-center md:text-left">
             {data.description}
           </p>
 
           {/* Category Tabs */}
-          <div className="flex items-center gap-8 mb-12">
+          <div className="flex items-center justify-center md:justify-start gap-8 mb-12">
             {categories.map((category) => (
               <button
                 key={category.name}
@@ -114,18 +114,18 @@ const DivisionTemplate = ({ data }: DivisionTemplateProps) => {
           </div>
 
           {/* Products Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 place-items-center md:place-items-start">
             {paginatedProducts.map((product: Product, index: number) => (
               <CraftCard key={index} {...product} />
             ))}
           </div>
 
           {/* Pagination */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-gray-200 pt-6">
-            <p className="text-sm text-gray-600">
+          <div className="flex flex-col sm:flex-row items-center justify-center md:justify-between gap-4 border-t border-gray-200 pt-6">
+            <p className="text-sm text-gray-600 text-center md:text-left">
               Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredProducts.length)} of {filteredProducts.length} entries
             </p>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center justify-center md:justify-start gap-1">
               <button
                 className="w-8 h-8 flex items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100 transition-colors"
                 onClick={() => handlePageChange(1)}
@@ -165,7 +165,7 @@ const DivisionTemplate = ({ data }: DivisionTemplateProps) => {
               </button>
             </div>
             <select
-              className="text-sm border border-gray-300 rounded-lg px-2 py-1.5 bg-white"
+              className="text-sm border border-gray-300 rounded-lg px-2 py-1.5 bg-white mx-auto md:mx-0"
               value={itemsPerPage}
               onChange={(e) => {
                 setItemsPerPage(Number(e.target.value));

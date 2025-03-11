@@ -72,7 +72,7 @@ const DistrictTemplate = ({ name, divisionName, data }: DistrictTemplateProps) =
         {/* District Title */}
         <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 to-transparent">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl text-white font-playfair">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl text-white font-playfair text-center md:text-left">
               {formattedName}
             </h1>
           </div>
@@ -85,14 +85,14 @@ const DistrictTemplate = ({ name, divisionName, data }: DistrictTemplateProps) =
           {/* Main Content */}
           <div className="lg:col-span-8">
             <div className="prose prose-lg max-w-none">
-              <h2 className="text-2xl md:text-3xl font-playfair mb-6">About {formattedName}</h2>
-              <p>{data.description}</p>
+              <h2 className="text-2xl md:text-3xl font-playfair mb-6 text-center md:text-left">About {formattedName}</h2>
+              <p className="text-center md:text-left">{data.description}</p>
               
               {/* Traditional Practices Section */}
-              <h3 className="text-xl md:text-2xl font-playfair mt-8 mb-4">Traditional Practices</h3>
+              <h3 className="text-xl md:text-2xl font-playfair mt-8 mb-4 text-center md:text-left">Traditional Practices</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-8">
                 {data.traditions.map((tradition, index) => (
-                  <div key={index} className="bg-gray-50 p-5 rounded-lg">
+                  <div key={index} className="bg-gray-50 p-5 rounded-lg text-center md:text-left">
                     <h4 className="font-medium text-lg mb-2">{tradition.name}</h4>
                     <p className="text-gray-700">{tradition.description}</p>
                   </div>
@@ -102,8 +102,8 @@ const DistrictTemplate = ({ name, divisionName, data }: DistrictTemplateProps) =
             
             {/* Regional Products Section */}
             <div className="mt-12">
-              <h2 className="text-2xl md:text-3xl font-playfair mb-6">Local Products</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <h2 className="text-2xl md:text-3xl font-playfair mb-6 text-center md:text-left">Local Products</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 place-items-center md:place-items-start">
                 {data.products.map((product, index) => (
                   <CraftCard
                     key={index}
@@ -123,25 +123,25 @@ const DistrictTemplate = ({ name, divisionName, data }: DistrictTemplateProps) =
           {/* Sidebar */}
           <div className="lg:col-span-4">
             <div className="bg-gray-50 rounded-xl p-6 sticky top-24">
-              <h3 className="text-xl font-playfair mb-4">Quick Facts</h3>
+              <h3 className="text-xl font-playfair mb-4 text-center md:text-left">Quick Facts</h3>
               <ul className="space-y-3">
-                <li className="flex items-center gap-2">
+                <li className="flex items-center gap-2 justify-center md:justify-start">
                   <span className="font-medium">District:</span>
                   <span>{formattedName}</span>
                 </li>
-                <li className="flex items-center gap-2">
+                <li className="flex items-center gap-2 justify-center md:justify-start">
                   <span className="font-medium">Division:</span>
                   <span>{formattedDivisionName}</span>
                 </li>
-                <li className="flex items-center gap-2">
+                <li className="flex items-center gap-2 justify-center md:justify-start">
                   <span className="font-medium">Famous for:</span>
                   <span>{data.traditions[0]?.name || "Traditional crafts"}</span>
                 </li>
               </ul>
               
               <div className="mt-8">
-                <h3 className="text-xl font-playfair mb-4">Visit {formattedName}</h3>
-                <p className="text-gray-700 mb-4">
+                <h3 className="text-xl font-playfair mb-4 text-center md:text-left">Visit {formattedName}</h3>
+                <p className="text-gray-700 mb-4 text-center md:text-left">
                   Plan your visit to discover the rich cultural heritage and natural beauty of {formattedName}.
                 </p>
                 <Button className="w-full text-white bg-[#0F5F38] hover:bg-[#0a4a2b]">
@@ -150,8 +150,8 @@ const DistrictTemplate = ({ name, divisionName, data }: DistrictTemplateProps) =
               </div>
               
               <div className="mt-8">
-                <h3 className="text-xl font-playfair mb-4">Explore More</h3>
-                <ul className="space-y-2">
+                <h3 className="text-xl font-playfair mb-4 text-center md:text-left">Explore More</h3>
+                <ul className="space-y-2 text-center md:text-left">
                   <li>
                     <a href="#" className="text-[#0F5F38] hover:underline">Local Festivals</a>
                   </li>
