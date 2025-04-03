@@ -69,13 +69,13 @@ const RegionalCrafts = () => {
   ];
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-[#f3f3f3]">
+    <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-[#f3f3f3]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="mb-8 sm:mb-10 md:mb-12">
-          <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-4">
+        <div className="mb-6 sm:mb-8 md:mb-12">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
             <div className="text-center sm:text-left w-full">
-              <h2 className="font-bold font-playfair text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-3 sm:mb-4">
+              <h2 className="font-bold font-playfair text-2xl sm:text-3xl md:text-4xl text-gray-900 mb-2 sm:mb-3 md:mb-4">
                 Explore Authentic Crafts by Region
               </h2>
               <p className="font-inter text-gray-500 text-sm sm:text-base max-w-2xl mx-auto sm:mx-0">

@@ -84,9 +84,9 @@ const DivisionShowcase = () => {
   };
 
   return (
-    <section id="division-showcase" className="py-12 sm:py-16 md:py-20 bg-white">
+    <section id="division-showcase" className="py-8 sm:py-10 md:py-14 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 md:gap-8">
           {/* Left Side - Image Display */}
           <div className="lg:col-span-7">
             <div className="relative aspect-[16/14] bg-gray-900 rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden">
@@ -100,23 +100,23 @@ const DivisionShowcase = () => {
               {/* Play/Pause Button */}
               <button 
                 onClick={togglePlay}
-                className="absolute top-4 sm:top-5 md:top-6 right-4 sm:right-5 md:right-6 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all flex items-center justify-center"
+                className="absolute top-3 sm:top-4 md:top-5 lg:top-6 right-3 sm:right-4 md:right-5 lg:right-6 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all flex items-center justify-center"
               >
                 {isPlaying ? (
-                  <Pause className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  <Pause className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" />
                 ) : (
-                  <Play className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  <Play className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" />
                 )}
               </button>
 
               {/* Location Info */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 bg-gradient-to-t from-black/80 to-transparent">
-                <h3 className="text-2xl sm:text-3xl md:text-4xl text-white font-playfair mb-3 sm:mb-4">{activeLocation}</h3>
+              <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-6 lg:p-8 bg-gradient-to-t from-black/80 to-transparent">
+                <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white font-playfair mb-2 sm:mb-3 md:mb-4">{activeLocation}</h3>
                 <button 
                   onClick={handleExploreClick}
-                  className="inline-flex items-center gap-1.5 sm:gap-2 text-white bg-white/20 hover:bg-white/30 px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg backdrop-blur-sm transition-colors font-inter text-sm sm:text-base"
+                  className="inline-flex items-center gap-1 sm:gap-1.5 md:gap-2 text-white bg-white/20 hover:bg-white/30 px-3 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 md:py-2.5 lg:py-3 rounded-lg backdrop-blur-sm transition-colors font-inter text-xs sm:text-sm md:text-base"
                 >
-                  <Play className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <Play className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
                   Explore Heritage
                 </button>
               </div>
@@ -127,8 +127,8 @@ const DivisionShowcase = () => {
           <div className="lg:col-span-5 flex flex-col h-full">
             {/* Location Cards Section */}
             <div className="flex-grow">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-playfair mb-6 sm:mb-8 md:mb-9">{currentDivision.name.toUpperCase()} DIVISION</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 sm:gap-2">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold font-playfair mb-4 sm:mb-5 md:mb-6 lg:mb-8">{currentDivision.name.toUpperCase()} DIVISION</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-1 sm:gap-1.5 md:gap-2">
                 {districts.map((district) => (
                   <LocationCard
                     key={district.name}
@@ -142,22 +142,22 @@ const DivisionShowcase = () => {
             </div>
 
             {/* Featured Locations Slider - Fixed at Bottom */}
-            <div className="mt-6 sm:mt-8">
-              <div className="mb-3 sm:mb-4 flex items-center justify-between">
-                <h3 className="text-lg sm:text-xl font-medium font-playfair text-gray-900">Other Divisions</h3>
+            <div className="mt-4 sm:mt-6 md:mt-8">
+              <div className="mb-2 sm:mb-3 md:mb-4 flex items-center justify-between">
+                <h3 className="text-base sm:text-lg md:text-xl font-medium font-playfair text-gray-900">Other Divisions</h3>
                 {/* Navigation Controls */}
-                <div className="flex items-center gap-1.5 sm:gap-2">
+                <div className="flex items-center gap-1 sm:gap-1.5 md:gap-2">
                   <button 
                     onClick={() => swiperRef.current?.slidePrev()}
-                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-gray-300 hover:border-gray-400 flex items-center justify-center text-gray-700 hover:text-gray-900 transition-colors"
+                    className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full border border-gray-300 hover:border-gray-400 flex items-center justify-center text-gray-700 hover:text-gray-900 transition-colors"
                   >
-                    <ChevronLeft className="w-4 h-4" />
+                    <ChevronLeft className="w-3 h-3 sm:w-4 sm:h-4" />
                   </button>
                   <button 
                     onClick={() => swiperRef.current?.slideNext()}
-                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-gray-300 hover:border-gray-400 flex items-center justify-center text-gray-700 hover:text-gray-900 transition-colors"
+                    className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full border border-gray-300 hover:border-gray-400 flex items-center justify-center text-gray-700 hover:text-gray-900 transition-colors"
                   >
-                    <ChevronRight className="w-4 h-4" />
+                    <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
                   </button>
                 </div>
               </div>

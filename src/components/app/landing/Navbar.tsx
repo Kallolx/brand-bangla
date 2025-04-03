@@ -265,6 +265,33 @@ const Navbar = () => {
               )}
             </Button>
 
+            {/* Heart/Wishlist (added for mobile) */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-gray-700 hover:text-[#0F5F38] transition-colors relative"
+            >
+              <a href="https://rnd.devevenboat.com/user/login" className="flex items-center justify-center w-full h-full">
+                <Heart className="w-5 h-5" />
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-[#0F5F38] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                    {wishlistCount}
+                  </span>
+                )}
+              </a>
+            </Button>
+
+            {/* Percent (added for mobile) */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-gray-700 hover:text-[#0F5F38] transition-colors"
+            >
+              <a href="https://rnd.devevenboat.com/item/compare/view" className="flex items-center justify-center w-full h-full">
+                <Percent className="w-5 h-5" />
+              </a>
+            </Button>
+
             {/* Menu Toggle */}
             <button
               className="text-gray-700 hover:text-[#0F5F38] transition-colors"
@@ -384,14 +411,17 @@ const Navbar = () => {
           onClick={() => setIsMobileMenuOpen(false)}
         >
           <div
-            className={`fixed top-0 right-0 h-full w-[300px] bg-white transform transition-transform duration-300 ease-in-out ${
+            className={`fixed top-0 right-0 h-full w-[300px] bg-white transform transition-transform duration-300 ease-in-out flex flex-col ${
               isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
             }`}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Sidebar Header */}
-            <div className="flex items-center justify-between p-4 border-b">
-              <span className="font-playfair text-lg font-semibold">Menu</span>
+            <div className="flex items-center justify-between p-4 border-b relative">
+              <div className="w-6 h-6"></div> {/* Empty space to balance the close button */}
+              <span className="font-playfair text-lg font-semibold absolute left-1/2 transform -translate-x-1/2">
+                Menu
+              </span>
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="text-gray-500 hover:text-gray-700"
@@ -400,13 +430,27 @@ const Navbar = () => {
               </button>
             </div>
 
+            {/* Logo Section */}
+            <div className="py-6 flex justify-center border-b">
+              <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center relative">
+                <img
+                  src="/images/logo.svg"
+                  alt="Grand Bazaar"
+                  className="h-10 w-auto"
+                />
+                <span className="absolute -top-2 -right-4">
+                  <img src="/icons/registered.png" alt="Logo Icon" className="w-3 h-3" />
+                </span>
+              </Link>
+            </div>
+
             {/* Sidebar Content */}
-            <div className="overflow-y-auto h-[calc(100%-60px)] py-4">
+            <div className="overflow-y-auto flex-grow py-4">
               {/* Products Section */}
               <div className="px-4">
                 <button
                   onClick={() => toggleSection("products")}
-                  className="flex items-center justify-between w-full py-2 text-left"
+                  className="flex items-center justify-between w-full py-3 text-left"
                 >
                   <span className="font-playfair font-bold text-gray-900">
                     Categories
@@ -467,7 +511,7 @@ const Navbar = () => {
               <div className="px-4 mt-4">
                 <button
                   onClick={() => toggleSection("divisions")}
-                  className="flex items-center justify-between w-full py-2 text-left"
+                  className="flex items-center justify-between w-full py-3 text-left"
                 >
                   <span className="font-playfair font-bold text-gray-900">
                     Divisions
@@ -505,7 +549,7 @@ const Navbar = () => {
               <div className="px-4 mt-4">
                 <a
                   href="https://rnd.devevenboat.com/Who%20We%20Are"
-                  className="block py-2 font-playfair font-bold text-gray-900 hover:text-[#0F5F38] transition-colors"
+                  className="block py-3 font-playfair font-bold text-gray-900 hover:text-[#0F5F38] transition-colors"
                 >
                   About
                 </a>
@@ -515,11 +559,24 @@ const Navbar = () => {
               <div className="px-4">
                 <a
                   href="https://rnd.devevenboat.com/contact"
-                  className="block py-2 font-playfair font-bold text-gray-900 hover:text-[#0F5F38] transition-colors"
+                  className="block py-3 font-playfair font-bold text-gray-900 hover:text-[#0F5F38] transition-colors"
                 >
                   Contact
                 </a>
               </div>
+            </div>
+
+            {/* Login Button at the bottom */}
+            <div className="px-4 py-5 border-t mt-auto">
+              <Button 
+                className="bg-[#fff] hover:bg-[#0F5F38]/90 hover:text-white text-black font-inter font-medium px-4 border border-gray-200 w-full"
+                onClick={() => {
+                  window.location.href = 'https://rnd.devevenboat.com/user/login';
+                  setIsMobileMenuOpen(false);
+                }}
+              >
+                Log in / Sign up
+              </Button>
             </div>
           </div>
         </div>

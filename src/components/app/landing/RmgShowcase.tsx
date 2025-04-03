@@ -3,11 +3,11 @@ import { motion } from "framer-motion";
 
 const RmgShowcase = () => {
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="space-y-8">
+    <section className="py-10 sm:py-14 md:py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="space-y-6 sm:space-y-8">
           {/* Image */}
-          <div className="relative overflow-hidden rounded-2xl">
+          <div className="relative overflow-hidden rounded-xl sm:rounded-2xl">
             <div className="relative aspect-[21/9] w-full">
               <img
                 src="/images/2nd.jpg"
@@ -26,11 +26,11 @@ const RmgShowcase = () => {
             className="max-w-3xl mx-auto md:mx-0"
           >
             <div className="text-center md:text-left">
-              <h2 className="text-3xl md:text-[40px] font-bold font-playfair text-gray-900 mb-4 leading-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-[40px] font-bold font-playfair text-gray-900 mb-3 sm:mb-4 leading-tight">
                 Bangladesh's RMG industry is leading in the 2nd position all over
                 the world.
               </h2>
-              <p className="text-gray-500 text-base md:text-lg font-inter mb-8">
+              <p className="text-gray-500 text-sm sm:text-base md:text-lg font-inter mb-5 sm:mb-8">
                 Bangladesh's RMG industry ranks second globally, recognized for
                 quality and competitiveness, driving economic growth and job
                 creation.

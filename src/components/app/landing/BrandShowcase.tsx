@@ -38,7 +38,7 @@ const BrandShowcase = () => {
   };
 
   return (
-    <section className="relative pt-12 sm:pt-16 md:pt-20 lg:pt-24 pb-12 sm:pb-16 md:pb-20 lg:pb-24">
+    <section className="relative pt-8 sm:pt-10 md:pt-16 lg:pt-20 pb-8 sm:pb-10 md:pb-16 lg:pb-20">
       {/* Main Background Text */}
       <div 
         className={styles.mainBackground}

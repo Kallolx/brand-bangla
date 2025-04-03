@@ -35,7 +35,7 @@ const CategoryCards = () => {
   };
 
   return (
-    <section className="relative pt-16 sm:pt-24 md:pt-32 lg:pt-40 pb-16 sm:pb-24 md:pb-32 lg:pb-40">
+    <section className="relative pt-10 sm:pt-16 md:pt-24 lg:pt-32 pb-10 sm:pb-16 md:pb-24 lg:pb-32">
       {/* Background Image */}
       <div 
         className="absolute inset-0 w-full h-full bg-repeat"
@@ -58,7 +58,7 @@ const CategoryCards = () => {
             >
               <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
                 {/* Image */}
-                <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+                <div className="relative h-40 sm:h-48 md:h-56 lg:h-64 overflow-hidden">
                   <img
                     src={category.image}
                     alt={category.title}
@@ -67,8 +67,8 @@ const CategoryCards = () => {
                 </div>
 
                 {/* Content */}
-                <div className="p-4 sm:p-6 md:p-8">
-                  <div className="flex items-center justify-between mb-2 sm:mb-4">
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8">
+                  <div className="flex items-center justify-between mb-1 sm:mb-2 md:mb-4">
                     <h3 className="text-lg sm:text-xl md:text-2xl font-playfair font-semibold text-gray-900">
                       {category.title}
                     </h3>

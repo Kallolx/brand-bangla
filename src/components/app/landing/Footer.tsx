@@ -37,8 +37,8 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
-          <div className="space-y-6">
-            <div className="relative inline-block">
+          <div className="space-y-6 text-center md:text-left">
+            <div className="relative inline-block mx-auto md:mx-0">
               <img
                 src="/images/logo.svg"
                 alt="Brand Bangladesh"
@@ -58,7 +58,7 @@ const Footer = () => {
           </div>
 
           {/* Product Links */}
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="font-playfair text-lg text-gray-900 mb-6">
               Categories
             </h3>
@@ -79,7 +79,7 @@ const Footer = () => {
                   Camera & Photo
                 </a>
               </li>
-              <li className="flex items-center gap-2">
+              <li className="flex items-center justify-center md:justify-start gap-2">
                 <a
                   href="https://rnd.devevenboat.com/category/smart-phone-and-tablet"
                   className="text-gray-500 hover:text-[#0F5F38] transition-colors"
@@ -118,7 +118,7 @@ const Footer = () => {
           </div>
 
           {/* Company Links */}
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="font-playfair text-lg text-gray-900 mb-6">
               Company
             </h3>
@@ -159,7 +159,7 @@ const Footer = () => {
           </div>
 
           {/* Newsletter */}
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="font-playfair text-lg text-gray-900 mb-6">
               Stay up to date
             </h3>
@@ -192,7 +192,7 @@ const Footer = () => {
         <div className="mt-16 pt-8 border-t border-gray-200">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             {/* Copyright */}
-            <p className="text-gray-500 font-inter text-sm">
+            <p className="text-gray-500 font-inter text-sm text-center md:text-left">
               © 2025 Brand Bangladesh. All rights reserved.
               <br />
               Developed By{" "}
@@ -205,7 +205,7 @@ const Footer = () => {
             </p>
 
             {/* Links */}
-            <div className="flex items-center gap-6 font-inter text-sm">
+            <div className="flex items-center justify-center md:justify-start gap-6 font-inter text-sm">
               <a
                 href="https://rnd.devevenboat.com/terms"
                 className="text-gray-500 hover:text-[#0F5F38] transition-colors"
@@ -227,7 +227,7 @@ const Footer = () => {
             </div>
 
             {/* Payment Methods */}
-            <div className="flex items-center gap-5">
+            <div className="flex items-center justify-center md:justify-start gap-5">
               <div className="flex items-center gap-6">
                 <img
                   src="/icons/payments/paypal.png"

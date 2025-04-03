@@ -27,14 +27,14 @@ const NewArrival = () => {
   ];
 
   return (
-    <section className="max-w-7xl mx-auto px-6 py-20">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"> 
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-14 md:py-20">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center"> 
         {/* Left Content */}
-        <div className="space-y-6 lg:top-32 text-center lg:text-left">
-          <h2 className="font-bold font-playfair text-4xl sm:text-5xl text-gray-900 max-w-xl mx-auto lg:mx-0">
+        <div className="space-y-4 sm:space-y-5 md:space-y-6 lg:top-32 text-center lg:text-left">
+          <h2 className="font-bold font-playfair text-3xl sm:text-4xl md:text-5xl text-gray-900 max-w-xl mx-auto lg:mx-0">
             New Arrival
           </h2>
-          <p className="font-inter text-gray-600 text-lg max-w-xl mx-auto lg:mx-0">
+          <p className="font-inter text-gray-600 text-base sm:text-lg max-w-xl mx-auto lg:mx-0">
             Discover our latest addition! Fresh, exciting, and designed to impress—be the first to explore what's new.
           </p>
           <div className="flex justify-center lg:justify-start">
@@ -55,7 +55,7 @@ const NewArrival = () => {
         </div>
   
         {/* Right Image Grid */}
-        <div className="relative">
+        <div className="relative mt-6 sm:mt-0">
           <ImageCollage images={images} />
         </div>
       </div>
