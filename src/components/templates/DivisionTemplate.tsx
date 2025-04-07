@@ -118,7 +118,13 @@ const DivisionTemplate = ({ data }: DivisionTemplateProps) => {
             {paginatedProducts.map((product: Product, index: number) => (
               <CraftCard 
                 key={index}
-                {...product}
+                id={product.id || `product-${index}`}
+                image={product.image}
+                title={product.title}
+                description={product.description}
+                rating={product.rating}
+                discount={product.discount}
+                priceRange={product.priceRange}
               />
             ))}
           </div>

@@ -48,12 +48,12 @@ const DistrictTemplate = ({ name, divisionName, data }: DistrictTemplateProps) =
       {/* Hero Section */}
       <div className="relative h-[400px] md:h-[500px] lg:h-[600px] mt-16">
         <img
-          src={`/images/locations/${name.toLowerCase()}.png`}
+          src={`/images/locations/${name.toLowerCase()}.webp`}
           alt={formattedName}
           className="absolute inset-0 w-full h-full object-cover object-center"
           onError={(e) => {
             const target = e.target as HTMLImageElement;
-            target.src = `/images/locations/${divisionName.toLowerCase()}.png`;
+            target.src = `/images/locations/${divisionName.toLowerCase()}.webp`;
           }}
         />
         
@@ -107,7 +107,7 @@ const DistrictTemplate = ({ name, divisionName, data }: DistrictTemplateProps) =
                 {data.products.map((product, index) => (
                   <CraftCard
                     key={index}
-                    id={product.id}
+                    id={product.id || `${name.toLowerCase()}-product-${index}`}
                     image={productImages[index % productImages.length]}
                     title={product.name}
                     description={product.description}

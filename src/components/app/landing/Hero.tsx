@@ -24,7 +24,7 @@ const Hero = () => {
       <div className="relative pt-16 sm:pt-20 md:pt-24 mb-6 sm:mb-10 md:mb-20">
         {/* Video Section */}
         <div className="mx-auto mt-10 w-full">
-          <div className="relative overflow-hidden h-[300px] sm:h-[300px] md:h-[400px] lg:h-[500px]">
+          <div className="relative overflow-hidden h-[600px] sm:h-[400px] md:h-[400px] lg:h-[600px]">
             {/* Loading Animation */}
             {isVideoLoading && (
               <div className="absolute inset-0 bg-gray-100 animate-pulse flex items-center justify-center">

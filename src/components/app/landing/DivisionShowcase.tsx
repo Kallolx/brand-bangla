@@ -91,7 +91,7 @@ const DivisionShowcase = () => {
           <div className="lg:col-span-7">
             <div className="relative aspect-[16/14] bg-gray-900 rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden">
               <img
-                src={`/images/locations/${activeLocation.toLowerCase()}.png`}
+                src={`/images/locations/${activeLocation.toLowerCase()}.webp`}
                 alt={activeLocation}
                 className="absolute inset-0 w-full h-full object-cover object-center scale-[1.15] transition-opacity duration-500"
               />
@@ -188,7 +188,7 @@ const DivisionShowcase = () => {
                       >
                         <div className="relative aspect-square rounded-lg sm:rounded-xl overflow-hidden">
                           <img
-                            src={`/images/locations/${division.image}.png`}
+                            src={`/images/locations/${division.image}.webp`}
                             alt={division.name}
                             className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                           />

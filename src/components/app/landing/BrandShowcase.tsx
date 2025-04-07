@@ -112,7 +112,7 @@ const BrandShowcase = () => {
                 >
                   <motion.span 
                     className={styles.dot}
-                    style={{ backgroundImage: `url("/images/locations/${division.image}.png")` }}
+                    style={{ backgroundImage: `url("/images/locations/${division.image}.webp")` }}
                   />
                   <span className={styles.label}>
                     {division.name}
