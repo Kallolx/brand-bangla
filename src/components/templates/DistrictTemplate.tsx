@@ -46,7 +46,7 @@ const DistrictTemplate = ({ name, divisionName, data }: DistrictTemplateProps) =
       <Navbar />
       
       {/* Hero Section */}
-      <div className="relative h-[400px] md:h-[500px] lg:h-[600px] mt-16">
+      <div className="relative h-[350px] md:h-[450px] lg:h-[600px] mt-16">
         <img
           src={`/images/locations/${name.toLowerCase()}.webp`}
           alt={formattedName}
@@ -56,6 +56,7 @@ const DistrictTemplate = ({ name, divisionName, data }: DistrictTemplateProps) =
             target.src = `/images/locations/${divisionName.toLowerCase()}.webp`;
           }}
         />
+        <div className="absolute inset-0 bg-black/40"></div>
         
         {/* Back Button */}
         <div className="absolute top-4 left-4 z-10">
@@ -70,104 +71,100 @@ const DistrictTemplate = ({ name, divisionName, data }: DistrictTemplateProps) =
         </div>
 
         {/* District Title */}
-        <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 to-transparent">
-          <div className="max-w-7xl mx-auto">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl text-white font-playfair text-center md:text-left">
-              {formattedName}
-            </h1>
+        <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 to-transparent">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex flex-col items-center md:items-center">
+              <span className="text-white/80 text-sm md:text-base uppercase tracking-wider mb-2">Welcome to</span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl text-white font-playfair text-center">
+                {formattedName}
+              </h1>
+              <div className="h-1 w-20 bg-[#0F5F38] mt-4"></div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Content Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
-          {/* Main Content */}
-          <div className="lg:col-span-8">
-            <div className="prose prose-lg max-w-none">
-              <h2 className="text-2xl md:text-3xl font-playfair mb-6 text-center md:text-left">About {formattedName}</h2>
-              <p className="text-center md:text-left">{data.description}</p>
-              
-              {/* Traditional Practices Section */}
-              <h3 className="text-xl md:text-2xl font-playfair mt-8 mb-4 text-center md:text-left">Traditional Practices</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-8">
-                {data.traditions.map((tradition, index) => (
-                  <div key={index} className="bg-gray-50 p-5 rounded-lg text-center md:text-left">
-                    <h4 className="font-medium text-lg mb-2">{tradition.name}</h4>
-                    <p className="text-gray-700">{tradition.description}</p>
-                  </div>
-                ))}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20">
+        {/* About Section */}
+        <div className="text-center mb-16">
+          <div className="max-w-3xl mx-auto">
+            <span className="text-sm text-[#0F5F38] font-medium uppercase tracking-wider mb-2 inline-block">District Overview</span>
+            <h2 className="text-2xl md:text-3xl font-playfair mb-6 text-center">Discover {formattedName}</h2>
+            <div className="h-0.5 w-16 bg-[#0F5F38] mx-auto mb-8"></div>
+            <p className="text-center text-gray-700 leading-relaxed mb-8">{data.description}</p>
+            <div className="flex items-center justify-center space-x-4 mb-4">
+              <div className="flex flex-col items-center p-4 bg-gray-50 rounded-lg shadow-sm w-28">
+                <span className="text-sm text-gray-500">Division</span>
+                <span className="font-semibold text-gray-800">{formattedDivisionName}</span>
+              </div>
+              <div className="flex flex-col items-center p-4 bg-gray-50 rounded-lg shadow-sm w-28">
+                <span className="text-sm text-gray-500">Famous for</span>
+                <span className="font-semibold text-gray-800">{data.traditions[0]?.name || "Crafts"}</span>
               </div>
             </div>
+          </div>
+        </div>
             
-            {/* Regional Products Section */}
-            <div className="mt-12">
-              <h2 className="text-2xl md:text-3xl font-playfair mb-6 text-center md:text-left">Local Products</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 place-items-center md:place-items-start">
-                {data.products.map((product, index) => (
-                  <CraftCard
-                    key={index}
-                    id={product.id || `${name.toLowerCase()}-product-${index}`}
-                    image={productImages[index % productImages.length]}
-                    title={product.name}
-                    description={product.description}
-                    rating={product.rating}
-                    discount={`${product.discount}% Off`}
-                    priceRange={`৳${product.priceRange.min} - ৳${product.priceRange.max}`}
-                  />
-                ))}
-              </div>
-            </div>
+        {/* Traditional Practices Section */}
+        <div className="mb-16">
+          <div className="text-center mb-10">
+            <span className="text-sm text-[#0F5F38] font-medium uppercase tracking-wider mb-2 inline-block">Cultural Heritage</span>
+            <h3 className="text-2xl md:text-3xl font-playfair mb-4 text-center">Traditional Practices</h3>
+            <div className="h-0.5 w-16 bg-[#0F5F38] mx-auto mb-6"></div>
+            <p className="text-center text-gray-600 max-w-3xl mx-auto mb-8">
+              Explore the rich cultural traditions that have been preserved through generations in {formattedName}.
+            </p>
           </div>
-
-          {/* Sidebar */}
-          <div className="lg:col-span-4">
-            <div className="bg-gray-50 rounded-xl p-6 sticky top-24">
-              <h3 className="text-xl font-playfair mb-4 text-center md:text-left">Quick Facts</h3>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-2 justify-center md:justify-start">
-                  <span className="font-medium">District:</span>
-                  <span>{formattedName}</span>
-                </li>
-                <li className="flex items-center gap-2 justify-center md:justify-start">
-                  <span className="font-medium">Division:</span>
-                  <span>{formattedDivisionName}</span>
-                </li>
-                <li className="flex items-center gap-2 justify-center md:justify-start">
-                  <span className="font-medium">Famous for:</span>
-                  <span>{data.traditions[0]?.name || "Traditional crafts"}</span>
-                </li>
-              </ul>
-              
-              <div className="mt-8">
-                <h3 className="text-xl font-playfair mb-4 text-center md:text-left">Visit {formattedName}</h3>
-                <p className="text-gray-700 mb-4 text-center md:text-left">
-                  Plan your visit to discover the rich cultural heritage and natural beauty of {formattedName}.
-                </p>
-                <Button className="w-full text-white bg-[#0F5F38] hover:bg-[#0a4a2b]">
-                  Plan Your Trip
-                </Button>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {data.traditions.map((tradition, index) => (
+              <div key={index} className="bg-white p-6 rounded-lg shadow-md border border-gray-100 text-center hover:shadow-lg transition-shadow">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-[#0F5F38]/10 text-[#0F5F38] rounded-full mb-4">
+                  {index + 1}
+                </div>
+                <h4 className="font-playfair text-xl mb-3">{tradition.name}</h4>
+                <p className="text-gray-700">{tradition.description}</p>
               </div>
-              
-              <div className="mt-8">
-                <h3 className="text-xl font-playfair mb-4 text-center md:text-left">Explore More</h3>
-                <ul className="space-y-2 text-center md:text-left">
-                  <li>
-                    <a href="#" className="text-[#0F5F38] hover:underline">Local Festivals</a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-[#0F5F38] hover:underline">Traditional Food</a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-[#0F5F38] hover:underline">Craft Markets</a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-[#0F5F38] hover:underline">Tourist Spots</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            ))}
           </div>
+        </div>
+          
+        {/* Regional Products Section */}
+        <div>
+          <div className="text-center mb-10">
+            <span className="text-sm text-[#0F5F38] font-medium uppercase tracking-wider mb-2 inline-block">Artisanal Treasures</span>
+            <h2 className="text-2xl md:text-3xl font-playfair mb-4 text-center">Local Products</h2>
+            <div className="h-0.5 w-16 bg-[#0F5F38] mx-auto mb-6"></div>
+            <p className="text-center text-gray-600 max-w-3xl mx-auto mb-8">
+              Discover authentic crafts and products that showcase the skilled artisanship of {formattedName}'s local communities.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+            {data.products.map((product, index) => (
+              <div key={index} className="flex justify-center">
+                <CraftCard
+                  id={product.id || `${name.toLowerCase()}-product-${index}`}
+                  image={productImages[index % productImages.length]}
+                  title={product.name}
+                  description={product.description}
+                  rating={product.rating}
+                  discount={`${product.discount}% Off`}
+                  priceRange={`৳${product.priceRange.min} - ৳${product.priceRange.max}`}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Call to Action */}
+        <div className="mt-20 text-center bg-gray-50 p-8 sm:p-10 md:p-12 rounded-xl">
+          <h3 className="text-xl md:text-2xl font-playfair mb-4">Ready to Experience {formattedName}?</h3>
+          <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
+            Plan your cultural journey to discover the traditions, crafts, and warm hospitality of {formattedName}.
+          </p>
+          <Button className="bg-[#0F5F38] hover:bg-[#0a4a2b] text-white px-8 py-2">
+            Plan Your Visit
+          </Button>
         </div>
       </div>
       
