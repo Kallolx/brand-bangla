@@ -154,18 +154,7 @@ const DistrictTemplate = ({ name, divisionName, data }: DistrictTemplateProps) =
               </div>
             ))}
           </div>
-        </div>
-        
-        {/* Call to Action */}
-        <div className="mt-20 text-center bg-gray-50 p-8 sm:p-10 md:p-12 rounded-xl">
-          <h3 className="text-xl md:text-2xl font-playfair mb-4">Ready to Experience {formattedName}?</h3>
-          <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
-            Plan your cultural journey to discover the traditions, crafts, and warm hospitality of {formattedName}.
-          </p>
-          <Button className="bg-[#0F5F38] hover:bg-[#0a4a2b] text-white px-8 py-2">
-            Plan Your Visit
-          </Button>
-        </div>
+        </div>        
       </div>
       
       <Footer />
